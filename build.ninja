@@ -1,0 +1,20 @@
+cflags = -Wall -Wextra -Werror -pedantic
+
+rule cc
+  command = gcc $cflags -c $in
+
+rule link
+  command = gcc $cflags $in -o $out
+
+build bubble.o: cc bubble.c
+build insertion.o: cc insertion.c
+build merge.o: cc merge.c
+build quick.o: cc quick.c
+build selection.o: cc selection.c
+build shell.o: cc shell.c
+
+build test.o: cc test.c
+build xsort.o: cc xsort.c
+
+build test.exe: link test.o bubble.o insertion.o merge.o quick.o selection.o shell.o
+build xsort.exe: link xsort.o bubble.o insertion.o merge.o quick.o selection.o shell.o

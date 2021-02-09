@@ -1,0 +1,8 @@
+.ninja_log
+
+*.o
+*.exe
+
+*.txt
+*.json
+*.csv
