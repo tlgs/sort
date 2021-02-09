@@ -52,7 +52,7 @@ int main(void) {
   };
 
   bool has_failed = false;
-  for (int i = 0; i < 6; i++) {
+  for (int i = 0; i < SORT_ALG_N; i++) {
     memcpy(a, r, sizeof(int) * ARR_SIZE);
 
     algo[i].f(ARR_SIZE, a);
@@ -65,7 +65,8 @@ int main(void) {
       strcpy(res, "FAIL");
     }
     int spaces_n = 10 - strlen(algo[i].name);
-    printf("[%d/6] %s:%*c%s\n", i + 1, algo[i].name, spaces_n, ' ', res);
+    printf("[%d/%d] %s:%*c%s\n", i + 1, SORT_ALG_N, algo[i].name, spaces_n, ' ',
+           res);
   }
 
   return has_failed ? EXIT_FAILURE : EXIT_SUCCESS;

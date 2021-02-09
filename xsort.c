@@ -11,6 +11,13 @@
 #define INIT_CAP 1000
 #define K 1.5
 
+typedef void sort_func(int n, int arr[n]);
+
+struct sort_algo {
+  char *option;
+  sort_func *f;
+};
+
 void print_help(void) { puts("help"); }
 
 int main(int argc, char *argv[]) {
@@ -19,31 +26,29 @@ int main(int argc, char *argv[]) {
     return EXIT_FAILURE;
   }
 
-  // TODO: unify options with the sorting functions
-  char const *options[] = {
-      [0] = "--help",  [1] = "--bubble", [2] = "--insertion",
-      [3] = "--merge", [4] = "--quick",  [5] = "--selection",
-      [6] = "--shell",
-  };
-  int op = 0;
-  bool valid = false;
-  for (; op < 7; op++) {
-    if (strcmp(argv[1], options[op]) == 0) {
-      valid = true;
-      break;
-    }
+  if ((strcmp(argv[1], "--help") * strcmp(argv[1], "-h")) == 0) {
+    print_help();
+    return EXIT_SUCCESS;
   }
 
-  if (!valid) {
+  struct sort_algo algo[] = {
+      [0] = {.option = "--bubble", .f = bubble_sort},
+      [1] = {.option = "--insertion", .f = insertion_sort},
+      [2] = {.option = "--merge", .f = merge_sort},
+      [3] = {.option = "--quick", .f = quick_sort},
+      [4] = {.option = "--selection", .f = selection_sort},
+      [5] = {.option = "--shell", .f = shell_sort},
+  };
+
+  int op = 0;
+  while (op < SORT_ALG_N && (strcmp(argv[1], algo[op].option) != 0)) {
+    op++;
+  }
+
+  if (op >= SORT_ALG_N) {
     printf("unknown option: %s\n", argv[1]);
     puts("see `xsort --help` for available options");
     return EXIT_FAILURE;
-  }
-
-  bool const is_help = (op == 0);
-  if (is_help) {
-    print_help();
-    return EXIT_SUCCESS;
   }
 
   bool const tty = _isatty(_fileno(stdin)); // windows specific
@@ -97,12 +102,7 @@ int main(int argc, char *argv[]) {
     n++;
   }
 
-  typedef void sort_func(int n, int arr[n]);
-  sort_func *algo[] = {
-      [0] = bubble_sort, [1] = insertion_sort, [2] = merge_sort,
-      [3] = quick_sort,  [4] = selection_sort, [5] = shell_sort,
-  };
-  algo[op - 1](n, arr);
+  algo[op].f(n, arr);
   for (int i = 0; i < n; i++) {
     printf("%d\n", arr[i]);
   }
