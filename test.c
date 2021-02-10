@@ -6,7 +6,7 @@
 
 #include "sort.h"
 
-#define ARR_SIZE 32000
+#define ARR_SIZE 32768
 
 typedef void sort_func(int n, int arr[n]);
 
@@ -43,12 +43,13 @@ int main(void) {
 
   int a[ARR_SIZE] = {0};
   struct sort_algo algo[] = {
-      [0] = {.name = "bubble", .f = bubble_sort},
-      [1] = {.name = "insertion", .f = insertion_sort},
-      [2] = {.name = "merge", .f = merge_sort},
-      [3] = {.name = "quick", .f = quick_sort},
-      [4] = {.name = "selection", .f = selection_sort},
-      [5] = {.name = "shell", .f = shell_sort},
+      {.name = "bubble", .f = bubble_sort},
+      {.name = "cocktail", .f = cocktail_sort},
+      {.name = "insertion", .f = insertion_sort},
+      {.name = "merge", .f = merge_sort},
+      {.name = "quick", .f = quick_sort},
+      {.name = "selection", .f = selection_sort},
+      {.name = "shell", .f = shell_sort},
   };
 
   bool has_failed = false;

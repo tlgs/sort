@@ -32,12 +32,13 @@ int main(int argc, char *argv[]) {
   }
 
   struct sort_algo algo[] = {
-      [0] = {.option = "--bubble", .f = bubble_sort},
-      [1] = {.option = "--insertion", .f = insertion_sort},
-      [2] = {.option = "--merge", .f = merge_sort},
-      [3] = {.option = "--quick", .f = quick_sort},
-      [4] = {.option = "--selection", .f = selection_sort},
-      [5] = {.option = "--shell", .f = shell_sort},
+      {.option = "--bubble", .f = bubble_sort},
+      {.option = "--cocktail", .f = cocktail_sort},
+      {.option = "--insertion", .f = insertion_sort},
+      {.option = "--merge", .f = merge_sort},
+      {.option = "--quick", .f = quick_sort},
+      {.option = "--selection", .f = selection_sort},
+      {.option = "--shell", .f = shell_sort},
   };
 
   int op = 0;

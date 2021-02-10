@@ -1,9 +1,10 @@
 #ifndef SORT_H
 #define SORT_H
 
-#define SORT_ALG_N 6
+#define SORT_ALG_N 7
 
 void bubble_sort(int n, int arr[n]);
+void cocktail_sort(int n, int arr[n]);
 void insertion_sort(int n, int arr[n]);
 void merge_sort(int n, int arr[n]);
 void quick_sort(int n, int arr[n]);
