@@ -1,21 +1,18 @@
-#include <stdbool.h>
-
 #include "sort.h"
 
+// includes the "last swap" optimization which shrinks the comparison space
 void bubble_sort(int n, int arr[n]) {
-  int i = 0;
-  bool swapped;
   do {
-    swapped = false;
-    for (int j = 1; j < n - i; j++) {
-      if (arr[j - 1] > arr[j]) {
-        int tmp = arr[j];
-        arr[j] = arr[j - 1];
-        arr[j - 1] = tmp;
+    int last_swap = 0;
+    for (int i = 1; i < n; i++) {
+      if (arr[i - 1] > arr[i]) {
+        int tmp = arr[i];
+        arr[i] = arr[i - 1];
+        arr[i - 1] = tmp;
 
-        swapped = true;
+        last_swap = i;
       }
     }
-    i++;
-  } while (swapped);
+    n = last_swap;
+  } while (n > 1);
 }
