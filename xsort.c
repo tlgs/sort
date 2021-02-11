@@ -1,6 +1,3 @@
-// about the vector reallocation growth factor:
-// https://github.com/facebook/folly/blob/master/folly/docs/FBVector.md#memory-handling
-#include <io.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,10 +15,27 @@ struct sort_algo {
   sort_func *f;
 };
 
-void print_help(void) { puts("help"); }
+void print_help(void) {
+  puts("xsort 0.1.0, a study of sorting algorithms");
+  puts("Sort lines of integers");
+  puts("");
+  puts("Usage:");
+  puts("  xsort --bubble [FILE]");
+  puts("  xsort --cocktail [FILE]");
+  puts("  xsort --comb [FILE]");
+  puts("  xsort --insertion [FILE]");
+  puts("  xsort --merge [FILE]");
+  puts("  xsort --quick [FILE]");
+  puts("  xsort --selection [FILE]");
+  puts("  xsort --shell [FILE]");
+  puts("");
+  puts("Description:");
+  puts("  Write sorted integers to stdout.");
+  puts("  With no FILE, read from stdin.");
+}
 
 int main(int argc, char *argv[]) {
-  if (argc < 2) {
+  if (argc < 2 || argc > 3) {
     puts("you should probably run `xsort --help`");
     return EXIT_FAILURE;
   }
@@ -53,14 +67,7 @@ int main(int argc, char *argv[]) {
     return EXIT_FAILURE;
   }
 
-  bool const tty = _isatty(_fileno(stdin)); // windows specific
-  if (tty && argc < 3) {
-    puts("error: missing file");
-    return EXIT_FAILURE;
-  } else if (!tty && argc > 2) {
-    puts("error: too many arguments for this mode");
-    return EXIT_FAILURE;
-  }
+  bool const tty = (argc == 3);
 
   int n = 0;
   int cap = INIT_CAP;
