@@ -6,10 +6,6 @@
 
 #include "sort.h"
 
-#define RUNS 10
-#define ARR_SIZE 10000
-#define RANGE_PCT 20
-
 typedef void sort_func(int n, int arr[n]);
 
 struct sort_algo {
@@ -23,13 +19,13 @@ int compare_int(void const *a, void const *b) {
   return (*A > *B) - (*A < *B);
 }
 
-int check(int n, int sorted[n], int arr[n]) {
+bool is_sorted(int n, int sorted[n], int arr[n]) {
   for (int i = 0; i < n; i++) {
     if (arr[i] != sorted[i]) {
-      return 0;
+      return false;
     }
   }
-  return 1;
+  return true;
 }
 
 int main(void) {
@@ -46,23 +42,23 @@ int main(void) {
       {.name = "shell", .f = shell_sort},
   };
 
+  int const arr_size[] = {1, 2, 42, 99, 100, 1337, 9999};
+
   bool any_failed = false;
   for (int i = 0; i < SORT_ALG_N; i++) {
     bool failed = false;
-    for (int j = 0; j < RUNS && !failed; j++) {
-      int n = ARR_SIZE + (rand() % ((2 * ((ARR_SIZE * RANGE_PCT) / 100) + 1)) -
-                          (ARR_SIZE * RANGE_PCT) / 100);
+    int runs = sizeof(arr_size) / sizeof(arr_size[0]);
+    for (int j = 0; j <  runs && !failed; j++) {
+      int n = arr_size[j];
 
       int *r = malloc(sizeof(int) * n);
       if (!r) {
         return EXIT_FAILURE;
       }
-
       int *s = malloc(sizeof(int) * n);
       if (!s) {
         return EXIT_FAILURE;
       }
-
       for (int k = 0; k < n; k++) {
         r[k] = rand();
         s[k] = r[k];
@@ -73,10 +69,9 @@ int main(void) {
       if (!a) {
         return EXIT_FAILURE;
       }
-
       memcpy(a, r, sizeof(int) * n);
       algo[i].f(n, a);
-      failed = !check(n, s, a);
+      failed = !is_sorted(n, s, a);
 
       free(r);
       free(s);
