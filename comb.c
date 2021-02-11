@@ -8,7 +8,7 @@ void comb_sort(int n, int arr[n]) {
   int gap = n;
   bool swapped;
   do {
-    gap = gap / K;
+    gap /= K;
     if (gap < 1) {
       gap = 1;
     }
