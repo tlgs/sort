@@ -1,6 +1,6 @@
 #include "sort.h"
 
-// Using Tokuda's sequence up to the largest number in [- 2^31, 2^31 - 1];
+// Using Tokuda's sequence up to the largest 32-bit integer;
 void shell_sort(int n, int arr[n]) {
   int seq[26] = {1,         4,         9,        20,       46,        103,
                  233,       525,       1182,     2660,     5985,      13467,
