@@ -8,6 +8,7 @@ rule link
 
 build bubble.o: cc bubble.c
 build cocktail.o: cc cocktail.c
+build comb.o: cc comb.c
 build insertion.o: cc insertion.c
 build merge.o: cc merge.c
 build quick.o: cc quick.c
@@ -17,5 +18,5 @@ build shell.o: cc shell.c
 build test.o: cc test.c
 build xsort.o: cc xsort.c
 
-build test.exe: link test.o bubble.o cocktail.o insertion.o merge.o quick.o selection.o shell.o
-build xsort.exe: link xsort.o bubble.o cocktail.o insertion.o merge.o quick.o selection.o shell.o
+build test.exe: link test.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o
+build xsort.exe: link xsort.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o

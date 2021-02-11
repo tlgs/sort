@@ -1,6 +1,7 @@
 $commands = @(
     '.\xsort --bubble',
     '.\xsort --cocktail',
+    '.\xsort --comb',
     '.\xsort --insertion',
     '.\xsort --merge',
     '.\xsort --quick',
@@ -8,7 +9,7 @@ $commands = @(
     '.\xsort --shell'
 )
 
-$N = 1..10 | ForEach-Object {$_ * 1000}
+$N = 1..10 | ForEach-Object {$_ * 2000}
 
 foreach ($i in $N) {
     hyperfine --warmup 1 `

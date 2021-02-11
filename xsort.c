@@ -8,7 +8,7 @@
 
 #include "sort.h"
 
-#define INIT_CAP 1000
+#define INIT_CAP 1024
 #define K 1.5
 
 typedef void sort_func(int n, int arr[n]);
@@ -34,6 +34,7 @@ int main(int argc, char *argv[]) {
   struct sort_algo algo[] = {
       {.option = "--bubble", .f = bubble_sort},
       {.option = "--cocktail", .f = cocktail_sort},
+      {.option = "--comb", .f = comb_sort},
       {.option = "--insertion", .f = insertion_sort},
       {.option = "--merge", .f = merge_sort},
       {.option = "--quick", .f = quick_sort},
