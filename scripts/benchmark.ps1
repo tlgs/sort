@@ -9,7 +9,7 @@ $commands = @(
     '.\xsort --shell'
 )
 
-$N = 1..10 | ForEach-Object {$_ * 2000}
+$N = 1..20 | ForEach-Object {$_ * 5000}
 
 foreach ($i in $N) {
     hyperfine --warmup 1 `
@@ -34,5 +34,5 @@ gnuplot -e "
     set key left top;
     set style data line;
     plot for [i=2:*] 'data.csv' using 1:i title columnheader linewidth 3
-    " > out.svg
+    " > assets\out.svg
 Remove-Item 'data.csv'
