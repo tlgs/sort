@@ -11,15 +11,16 @@ $commands = @(
 $N = 1..10 | ForEach-Object {$_ * 1000}
 
 foreach ($i in $N) {
-    Get-Random -Minimum ([int32]::MinValue) -Maximum ([int32]::MaxValue) -Count $i > "rand-$i.txt"
     hyperfine --warmup 1 `
               --min-runs 2 `
+              --max-runs 5 `
               --export-json "bench-$i.json" `
+              --prepare "python $PSScriptRoot\int32gen.py $i rand-$i.txt" `
               $commands.ForEach({"$_ rand-$i.txt"})
     Remove-Item "rand-$i.txt"
 }
 
-jq --slurp --raw-output -f ($PSScriptRoot + '\filter.jq') (Get-Item bench-*.json) > 'data.csv'
+jq --slurp --raw-output -f "$PSScriptRoot\filter.jq" (Get-Item bench-*.json) > 'data.csv'
 Remove-Item "bench-*.json"
 
 gnuplot -e "
