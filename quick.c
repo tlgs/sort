@@ -1,20 +1,42 @@
 #include "sort.h"
 
-int partition(int arr[], int lo, int hi) {
-  int pivot = arr[hi];
-  int i = lo;
-  for (int j = lo; j < hi; j++) {
-    if (arr[j] < pivot) {
-      int tmp = arr[i];
-      arr[i] = arr[j];
-      arr[j] = tmp;
-      i++;
-    }
-  }
-  arr[hi] = arr[i];
-  arr[i] = pivot;
+void swap(int *a, int *b) {
+  int t = *a;
+  *a = *b;
+  *b = t;
+}
 
-  return i;
+// uses Hoare's partitioning scheme;
+// uses the "median-of-three" choice of pivot (and edge ordering);
+int partition(int arr[], int lo, int hi) {
+  int mid = lo + (hi - lo) / 2;
+  if (arr[mid] < arr[lo]) {
+    swap(&arr[mid], &arr[lo]);
+  }
+  if (arr[hi] < arr[lo]) {
+    swap(&arr[hi], &arr[lo]);
+  }
+  if (arr[hi] < arr[mid]) {
+    swap(&arr[hi], &arr[mid]);
+  }
+  int pivot = arr[mid];
+
+  int i = lo - 1;
+  int j = hi + 1;
+  while (1) {
+    do {
+      i++;
+    } while (arr[i] < pivot);
+
+    do {
+      j--;
+    } while (arr[j] > pivot);
+
+    if (i >= j) {
+      return j;
+    }
+    swap(&arr[i], &arr[j]);
+  }
 }
 
 void qs(int arr[], int lo, int hi) {
@@ -23,7 +45,7 @@ void qs(int arr[], int lo, int hi) {
   }
 
   int p = partition(arr, lo, hi);
-  qs(arr, lo, p - 1);
+  qs(arr, lo, p);
   qs(arr, p + 1, hi);
 }
 
