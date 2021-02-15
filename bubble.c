@@ -1,6 +1,6 @@
 #include "sort.h"
 
-// includes the "last swap" optimization which shrinks the comparison space
+// uses the "last swap" optimization to reduce comparison count
 void bubble_sort(int n, int arr[n]) {
   do {
     int last_swap = 0;

@@ -1,6 +1,9 @@
 #include "sort.h"
 
-// includes the "last swap" optimization which shrinks the comparison space
+// cocktail sort is a variation of bubble sort that operates in both directions;
+// this hopes to "kill turtles"
+// i.e. move small elements to the beginning of the list.
+// uses the "last swap" optimization to reduce comparison count
 void cocktail_sort(int n, int arr[n]) {
   int start = 0;
   do {
