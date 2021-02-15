@@ -12,9 +12,11 @@ A study of sorting algorithms using C.
 ## Benchmark
 
 A rather simple and unscientific benchmark comparison is done with
-the `script/benchmark.ps1` PowerShell script.
-
-![Sorting algorithm runtime comparison](assets/out.svg)
+the `sortperf.c` program.
+It is a straight rip-off of CPython's
+[sortperf.py](https://github.com/python/cpython/blob/master/Lib/test/sortperf.py),
+which has been used to back up discussions to changes to the standard's
+library sorting algorithm.
 
 ## Usage
 
@@ -42,3 +44,9 @@ Description:
   Write sorted integers to stdout.
   With no FILE, read from stdin.
 ```
+
+## Useful references
+
+- timsort discussion
+  ([Python's mailing list](https://mail.python.org/pipermail/python-dev/2002-July/026837.html))
+- sortperf.py ([source](https://github.com/python/cpython/blob/master/Lib/test/sortperf.py))

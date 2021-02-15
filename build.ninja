@@ -16,7 +16,9 @@ build selection.o: cc selection.c
 build shell.o: cc shell.c
 
 build test.o: cc test.c
+build sortperf.o: cc sortperf.c
 build xsort.o: cc xsort.c
 
 build test.exe: link test.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o
+build sortperf.exe: link sortperf.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o
 build xsort.exe: link xsort.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o
