@@ -6,13 +6,6 @@
 
 #include "sort.h"
 
-typedef void sort_func(int n, int arr[n]);
-
-struct sort_algo {
-  char *name;
-  sort_func *f;
-};
-
 int compare_int(void const *a, void const *b) {
   int const *A = a;
   int const *B = b;
@@ -31,7 +24,11 @@ bool is_sorted(int n, int sorted[n], int arr[n]) {
 int main(void) {
   srand(time(NULL));
 
-  struct sort_algo algo[] = {
+  typedef void sort_func(int n, int arr[n]);
+  struct sort_algo {
+    char *name;
+    sort_func *f;
+  } algo[] = {
       {.name = "bubble", .f = bubble_sort},
       {.name = "cocktail", .f = cocktail_sort},
       {.name = "comb", .f = comb_sort},
@@ -48,7 +45,7 @@ int main(void) {
   for (int i = 0; i < SORT_ALG_N; i++) {
     bool failed = false;
     int runs = sizeof(arr_size) / sizeof(arr_size[0]);
-    for (int j = 0; j <  runs && !failed; j++) {
+    for (int j = 0; j < runs && !failed; j++) {
       int n = arr_size[j];
 
       int *r = malloc(sizeof(int) * n);
