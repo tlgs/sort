@@ -49,25 +49,21 @@ int main(void) {
     sort_func *f;
     int iters;
   } algo[] = {
-      {.name = "bubble sort", .f = bubble_sort, .iters = 16},
-      {.name = "cocktail sort", .f = cocktail_sort, .iters = 16},
-      {.name = "comb sort", .f = comb_sort, .iters = 20},
-      {.name = "insertion sort", .f = insertion_sort, .iters = 17},
-      {.name = "merge sort", .f = merge_sort, .iters = 20},
-      {.name = "quicksort", .f = quick_sort, .iters = 20},
-      {.name = "selection sort", .f = selection_sort, .iters = 16},
-      {.name = "shellsort", .f = shell_sort, .iters = 20},
+      {.name = "comb sort", .f = comb_sort},
+      {.name = "merge sort", .f = merge_sort},
+      {.name = "quicksort", .f = quick_sort},
+      {.name = "shellsort", .f = shell_sort},
   };
 
-  for (int op = 0; op < SORT_ALG_N; op++) {
+  for (int op = 0; op < 4; op++) {
     puts(algo[op].name);
-    printf("%2s %7s  *sort  \\sort  /sort  3sort  +sort  %%sort  ~sort  =sort  "
+    printf("%2s %8s  *sort  \\sort  /sort  3sort  +sort  %%sort  ~sort  =sort  "
            "!sort\n",
            "i", "2**i");
 
-    for (int i = 15; i <= algo[op].iters; i++) {
+    for (int i = 15; i <= 20; i++) {
       int n = (1 << i);
-      printf("%2d %7d ", i, n);
+      printf("%2d %8d ", i, n);
 
       int *arr = malloc(sizeof(int) * n);
       if (!arr) {
