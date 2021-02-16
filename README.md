@@ -12,15 +12,29 @@ A study of sorting algorithms using C.
 ## Benchmark
 
 A rather simple and unscientific benchmark comparison is done with
-the `sortperf.c` program.
-It is a straight rip-off of CPython's
-[sortperf.py](https://github.com/python/cpython/blob/master/Lib/test/sortperf.py),
-which has been used to back up discussions to changes to the standard's
-library sorting algorithm.
+the `sortperf.c` program;
+it's a straight rip-off of CPython's `sortperf.py`,
+which has been used to back up discussions to changes to the
+standard library's sorting algorithm.
+
+```text
+Key:
+  *sort: random data
+  \sort: descending data
+  /sort: ascending data
+  3sort: ascending, then 3 random exchanges
+  +sort: ascending, then 10 random at the end
+  %sort: ascending, then randomly replace 1% of the elements w/ random values
+  ~sort: many duplicates
+  =sort: all equal
+  !sort: worst case scenario
+```
+
+![Sorting algorithms runtime comparison](out.svg)
 
 ## Usage
 
-The focus is on the algorithms and not on _general functionality_;
+**Note:** the focus is on the algorithms and not on _general functionality_;
 there is only an interface for `int`.
 
 For testing convenience, the program `xsort` exposes the different available algorithms:
