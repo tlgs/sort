@@ -38,7 +38,7 @@ int rand_bigger(int n) {
   for (int i = 0; i < k; i++) {
     r += rand();
   }
-  return r % (n + 1);
+  return r % n;
 }
 
 int main(void) {
