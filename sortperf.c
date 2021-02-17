@@ -72,7 +72,7 @@ int main(void) {
 
       // *sort
       for (int j = 0; j < n; j++) {
-        arr[j] = rand();
+        arr[j] = rand() - RAND_MAX / 2;
       }
       do_it(n, arr, algo[op].f);
 
@@ -99,14 +99,14 @@ int main(void) {
 
       // +sort
       for (int j = n - 10; j < n; j++) {
-        arr[j] = rand();
+        arr[j] = rand() - RAND_MAX / 2;
       }
       do_it(n, arr, algo[op].f);
 
       // %sort
       for (int j = 0; j < n / 100; j++) {
         int idx = rand_bigger(n);
-        arr[idx] = rand();
+        arr[idx] = rand() - RAND_MAX / 2;
       }
       do_it(n, arr, algo[op].f);
 
