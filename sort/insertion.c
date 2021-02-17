@@ -1,13 +1,15 @@
+#include <stdint.h>
+
 #include "sort.h"
 
-void insertion_sort(int n, int arr[n]) {
-  for (int i = 1; i < n; i++) {
-    int x = arr[i];
-    int j = i - 1;
-    while (j >= 0 && arr[j] > x) {
-      arr[j + 1] = arr[j];
+void insertion_sort(size_t n, int32_t arr[n]) {
+  for (size_t i = 1; i < n; i++) {
+    int32_t x = arr[i];
+    size_t j = i;
+    while (j > 0 && arr[j - 1] > x) {
+      arr[j] = arr[j - 1];
       j--;
     }
-    arr[j + 1] = x;
+    arr[j] = x;
   }
 }

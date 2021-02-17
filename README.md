@@ -2,6 +2,8 @@
 
 A study of sorting algorithms using C.
 
+Implementation only for `int32_t` values.
+
 ## Motivation
 
 - obtain an understanding of sorting algorithms beyond Wikipedia's initial paragraph
@@ -34,16 +36,9 @@ Key:
 
 ## Usage
 
-**Note:** the focus is on the algorithms and not on _general functionality_;
-there is only an interface for `int`.
-
 For testing convenience, the program `xsort` exposes the different available algorithms:
 
-```console
-$ .\xsort --help
-xsort 0.1.0, a study of sorting algorithms
-Sort lines of integers
-
+```text
 Usage:
   xsort --bubble [FILE]
   xsort --cocktail [FILE]

@@ -6,6 +6,7 @@ rule cc
 rule link
   command = gcc $cflags $in -o $out
 
+build utils.o: cc sort/utils.c
 build bubble.o: cc sort/bubble.c
 build cocktail.o: cc sort/cocktail.c
 build comb.o: cc sort/comb.c
@@ -19,6 +20,6 @@ build test.o: cc test.c
 build sortperf.o: cc sortperf.c
 build xsort.o: cc xsort.c
 
-build test.exe: link test.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o
-build sortperf.exe: link sortperf.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o
-build xsort.exe: link xsort.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o
+build test.exe: link test.o utils.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o
+build sortperf.exe: link sortperf.o utils.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o
+build xsort.exe: link xsort.o utils.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o

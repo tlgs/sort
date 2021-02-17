@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,7 +7,7 @@
 
 #include "sort/sort.h"
 
-typedef void sort_func(int n, int arr[n]);
+typedef void sort_func(size_t n, int32_t arr[n]);
 
 int compare_int(void const *a, void const *b) {
   int const *A = a;
@@ -14,7 +15,7 @@ int compare_int(void const *a, void const *b) {
   return (*A > *B) - (*A < *B);
 }
 
-bool is_sorted(int n, int sorted[n], int arr[n]) {
+bool is_sorted(int n, int32_t sorted[n], int32_t arr[n]) {
   for (int i = 0; i < n; i++) {
     if (arr[i] != sorted[i]) {
       return false;
@@ -49,25 +50,25 @@ int main(void) {
     for (int j = 0; j < runs && !failed; j++) {
       int n = arr_size[j];
 
-      int *r = malloc(sizeof(int) * n);
+      int32_t *r = malloc(sizeof(int32_t) * n);
       if (!r) {
         return EXIT_FAILURE;
       }
-      int *s = malloc(sizeof(int) * n);
+      int32_t *s = malloc(sizeof(int32_t) * n);
       if (!s) {
         return EXIT_FAILURE;
       }
       for (int k = 0; k < n; k++) {
-        r[k] = rand();
+        r[k] = rand() - RAND_MAX / 2;
         s[k] = r[k];
       }
-      qsort(s, n, sizeof(int), compare_int);
+      qsort(s, n, sizeof(int32_t), compare_int);
 
-      int *a = malloc(sizeof(int) * n);
+      int32_t *a = malloc(sizeof(int32_t) * n);
       if (!a) {
         return EXIT_FAILURE;
       }
-      memcpy(a, r, sizeof(int) * n);
+      memcpy(a, r, sizeof(int32_t) * n);
       algo[i].f(n, a);
       failed = !is_sorted(n, s, a);
 

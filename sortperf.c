@@ -11,6 +11,7 @@
 //   ~sort: many duplicates
 //   =sort: all equal
 //   !sort: worst case scenario
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,7 +19,7 @@
 
 #include "sort/sort.h"
 
-typedef void sort_func(int n, int arr[n]);
+typedef void sort_func(size_t n, int32_t arr[n]);
 
 void do_it(int n, int arr[n], sort_func *f) {
   clock_t begin = clock();
@@ -64,7 +65,7 @@ int main(void) {
       int n = (1 << i);
       printf("%2d %8d ", i, n);
 
-      int *arr = malloc(sizeof(int) * n);
+      int32_t *arr = malloc(sizeof(int32_t) * n);
       if (!arr) {
         printf("error: memory allocation");
         return EXIT_FAILURE;
@@ -78,9 +79,7 @@ int main(void) {
 
       // \sort
       for (int j = 0; j < n / 2; j++) {
-        int tmp = arr[j];
-        arr[j] = arr[n - j - 1];
-        arr[n - j - 1] = tmp;
+        swap(&arr[j], &arr[n - j - 1]);
       }
       do_it(n, arr, algo[op].f);
 
@@ -91,9 +90,7 @@ int main(void) {
       for (int j = 0; j < 3; j++) {
         int idx_a = rand_bigger(n);
         int idx_b = rand_bigger(n);
-        int tmp = arr[idx_a];
-        arr[idx_a] = arr[idx_b];
-        arr[idx_b] = tmp;
+        swap(&arr[idx_a], &arr[idx_b]);
       }
       do_it(n, arr, algo[op].f);
 

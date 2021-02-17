@@ -1,17 +1,16 @@
+#include <stdint.h>
 #include <stdlib.h>
 
 #include "sort.h"
 
-void merge(int arr[], int l, int m, int r) {
-  // bad: no verification that this malloc succeeds!
-  int *aux = malloc(sizeof(int) * (r - l + 1));
-  for (int i = 0; i <= r - l; i++) {
+void merge(int32_t arr[], int32_t aux[], size_t l, size_t m, size_t r) {
+  for (size_t i = 0; i <= r - l; i++) {
     aux[i] = arr[l + i];
   }
 
-  int i = l;
-  int a = 0;
-  int b = m - l + 1;
+  size_t i = l;
+  size_t a = 0;
+  size_t b = m - l + 1;
   while (a <= m - l && b <= r - l) {
     if (aux[a] < aux[b]) {
       arr[i++] = aux[a++];
@@ -27,19 +26,27 @@ void merge(int arr[], int l, int m, int r) {
   while (b <= r - l) {
     arr[i++] = aux[b++];
   }
-
-  free(aux);
 }
 
-void ms(int arr[], int l, int r) {
+void ms(int32_t arr[], int32_t aux[], size_t l, size_t r) {
   if (l >= r) {
     return;
   }
 
-  int m = l + (r - l) / 2;
-  ms(arr, l, m);
-  ms(arr, m + 1, r);
-  merge(arr, l, m, r);
+  size_t m = l + (r - l) / 2;
+  ms(arr, aux, l, m);
+  ms(arr, aux, m + 1, r);
+  merge(arr, aux, l, m, r);
 }
 
-void merge_sort(int n, int arr[n]) { ms(arr, 0, n - 1); }
+void merge_sort(size_t n, int32_t arr[n]) {
+  int32_t *aux = malloc(sizeof(int32_t) * n);
+  if (!aux) {
+    // error out, maybe?
+    return;
+  }
+
+  ms(arr, aux, 0, n - 1);
+
+  free(aux);
+}

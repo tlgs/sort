@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,7 +9,7 @@
 #define INIT_CAP 1024
 #define K 1.5
 
-typedef void sort_func(int n, int arr[n]);
+typedef void sort_func(size_t n, int32_t arr[n]);
 
 void print_help(void) {
   puts("xsort 0.1.0, a study of sorting algorithms");
@@ -67,7 +68,7 @@ int main(int argc, char *argv[]) {
 
   int n = 0;
   int cap = INIT_CAP;
-  int *arr = malloc(sizeof(int) * cap);
+  int32_t *arr = malloc(sizeof(int32_t) * cap);
   if (!arr) {
     puts("error: memory allocation");
     return EXIT_FAILURE;
@@ -83,7 +84,7 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  int x;
+  int32_t x;
   while (true) {
     if (tty) {
       if (fscanf(fp, "%d", &x) != 1) {
@@ -98,7 +99,7 @@ int main(int argc, char *argv[]) {
 
     if (n + 1 > cap) {
       cap *= K;
-      arr = realloc(arr, sizeof(int) * cap);
+      arr = realloc(arr, sizeof(int32_t) * cap);
       if (!arr) {
         puts("error: memory re-allocation");
         return EXIT_FAILURE;
