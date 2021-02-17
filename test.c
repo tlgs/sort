@@ -4,7 +4,9 @@
 #include <string.h>
 #include <time.h>
 
-#include "sort.h"
+#include "sort/sort.h"
+
+typedef void sort_func(int n, int arr[n]);
 
 int compare_int(void const *a, void const *b) {
   int const *A = a;
@@ -24,7 +26,6 @@ bool is_sorted(int n, int sorted[n], int arr[n]) {
 int main(void) {
   srand(time(NULL));
 
-  typedef void sort_func(int n, int arr[n]);
   struct sort_algo {
     char *name;
     sort_func *f;

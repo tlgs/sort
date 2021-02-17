@@ -16,7 +16,7 @@
 #include <string.h>
 #include <time.h>
 
-#include "sort.h"
+#include "sort/sort.h"
 
 typedef void sort_func(int n, int arr[n]);
 
@@ -47,7 +47,6 @@ int main(void) {
   struct sort_algo {
     char *name;
     sort_func *f;
-    int iters;
   } algo[] = {
       {.name = "comb sort", .f = comb_sort},
       {.name = "merge sort", .f = merge_sort},

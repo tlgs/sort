@@ -6,14 +6,14 @@ rule cc
 rule link
   command = gcc $cflags $in -o $out
 
-build bubble.o: cc bubble.c
-build cocktail.o: cc cocktail.c
-build comb.o: cc comb.c
-build insertion.o: cc insertion.c
-build merge.o: cc merge.c
-build quick.o: cc quick.c
-build selection.o: cc selection.c
-build shell.o: cc shell.c
+build bubble.o: cc sort/bubble.c
+build cocktail.o: cc sort/cocktail.c
+build comb.o: cc sort/comb.c
+build insertion.o: cc sort/insertion.c
+build merge.o: cc sort/merge.c
+build quick.o: cc sort/quick.c
+build selection.o: cc sort/selection.c
+build shell.o: cc sort/shell.c
 
 build test.o: cc test.c
 build sortperf.o: cc sortperf.c

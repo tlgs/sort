@@ -3,10 +3,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "sort.h"
+#include "sort/sort.h"
 
 #define INIT_CAP 1024
 #define K 1.5
+
+typedef void sort_func(int n, int arr[n]);
 
 void print_help(void) {
   puts("xsort 0.1.0, a study of sorting algorithms");
@@ -38,7 +40,6 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  typedef void sort_func(int n, int arr[n]);
   struct sort_algo {
     char *option;
     sort_func *f;
@@ -64,8 +65,6 @@ int main(int argc, char *argv[]) {
     return EXIT_FAILURE;
   }
 
-  bool const tty = (argc == 3);
-
   int n = 0;
   int cap = INIT_CAP;
   int *arr = malloc(sizeof(int) * cap);
@@ -75,6 +74,7 @@ int main(int argc, char *argv[]) {
   }
 
   FILE *fp;
+  bool const tty = (argc == 3);
   if (tty) {
     fp = fopen(argv[2], "r");
     if (!fp) {
