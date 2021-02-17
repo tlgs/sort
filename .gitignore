@@ -2,7 +2,3 @@
 
 *.o
 *.exe
-
-*.txt
-*.json
-*.csv
