@@ -17,12 +17,14 @@ void print_help(void) {
   puts("  xsort --bubble [FILE]");
   puts("  xsort --cocktail [FILE]");
   puts("  xsort --comb [FILE]");
+  puts("  xsort --gnome [FILE]");
   puts("  xsort --insertion [FILE]");
   puts("  xsort --merge [FILE]");
   puts("  xsort --quick [FILE]");
   puts("  xsort --selection [FILE]");
   puts("  xsort --shell [FILE]");
   puts("  xsort --stooge [FILE]");
+  puts("  xsort -h | --help");
   puts("Description:");
   puts("  Write sorted integers to stdout.");
   puts("  With no FILE, read from stdin.");
@@ -46,6 +48,7 @@ int main(int argc, char *argv[]) {
       {.option = "--bubble", .f = bubble_sort},
       {.option = "--cocktail", .f = cocktail_sort},
       {.option = "--comb", .f = comb_sort},
+      {.option = "--gnome", .f = gnome_sort},
       {.option = "--insertion", .f = insertion_sort},
       {.option = "--merge", .f = merge_sort},
       {.option = "--quick", .f = quick_sort},

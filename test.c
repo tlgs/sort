@@ -34,6 +34,7 @@ int main(void) {
       {.name = "bubble", .f = bubble_sort},
       {.name = "cocktail", .f = cocktail_sort},
       {.name = "comb", .f = comb_sort},
+      {.name = "gnome", .f = gnome_sort},
       {.name = "insertion", .f = insertion_sort},
       {.name = "merge", .f = merge_sort},
       {.name = "quick", .f = quick_sort},
@@ -82,7 +83,7 @@ int main(void) {
     char res[5];
     strcpy(res, failed ? "FAIL" : "PASS");
     int spaces_n = 10 - strlen(algo[i].name);
-    printf("[%d/%d] %s:%*c%s\n", i + 1, SORT_ALG_N, algo[i].name, spaces_n, ' ',
+    printf("[%2d/%d] %s:%*c%s\n", i + 1, SORT_ALG_N, algo[i].name, spaces_n, ' ',
            res);
   }
 

@@ -52,6 +52,7 @@ int main(void) {
       // {.name = "bubble sort", .f = bubble_sort},
       // {.name = "cocktail sort", .f = cocktail_sort},
       {.name = "comb sort", .f = comb_sort},
+      // {.name = "gnome sort", .f = gnome_sort},
       // {.name = "insertion sort", .f = insertion_sort},
       {.name = "merge sort", .f = merge_sort},
       {.name = "quicksort", .f = quick_sort},
