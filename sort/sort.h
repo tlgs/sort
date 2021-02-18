@@ -1,7 +1,7 @@
 #ifndef SORT_H
 #define SORT_H
 
-#define SORT_ALG_N 10
+#define SORT_ALG_N 11
 
 void swap(int32_t *a, int32_t *b);
 
@@ -16,6 +16,8 @@ void gnome_sort(size_t n, int32_t arr[n]);
 void insertion_sort(size_t n, int32_t arr[n]);
 
 void merge_sort(size_t n, int32_t arr[n]);
+
+void odd_even_sort(size_t n, int32_t arr[n]);
 
 void quick_sort(size_t n, int32_t arr[n]);
 

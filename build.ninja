@@ -13,6 +13,7 @@ build comb.o: cc sort/comb.c
 build gnome.o: cc sort/gnome.c
 build insertion.o: cc sort/insertion.c
 build merge.o: cc sort/merge.c
+build odd_even.o: cc sort/odd_even.c
 build quick.o: cc sort/quick.c
 build selection.o: cc sort/selection.c
 build shell.o: cc sort/shell.c
@@ -22,6 +23,6 @@ build test.o: cc test.c
 build sortperf.o: cc sortperf.c
 build xsort.o: cc xsort.c
 
-build test.exe: link test.o utils.o bubble.o cocktail.o comb.o gnome.o insertion.o merge.o quick.o selection.o shell.o stooge.o
-build sortperf.exe: link sortperf.o utils.o bubble.o cocktail.o comb.o gnome.o insertion.o merge.o quick.o selection.o shell.o stooge.o
-build xsort.exe: link xsort.o utils.o bubble.o cocktail.o comb.o gnome.o insertion.o merge.o quick.o selection.o shell.o stooge.o
+build test.exe: link test.o utils.o bubble.o cocktail.o comb.o gnome.o insertion.o merge.o odd_even.o quick.o selection.o shell.o stooge.o
+build sortperf.exe: link sortperf.o utils.o bubble.o cocktail.o comb.o gnome.o insertion.o merge.o odd_even.o quick.o selection.o shell.o stooge.o
+build xsort.exe: link xsort.o utils.o bubble.o cocktail.o comb.o gnome.o insertion.o merge.o odd_even.o quick.o selection.o shell.o stooge.o

@@ -55,6 +55,7 @@ int main(void) {
       // {.name = "gnome sort", .f = gnome_sort},
       // {.name = "insertion sort", .f = insertion_sort},
       {.name = "merge sort", .f = merge_sort},
+      // {.name = "odd-even sort", .f = odd_even_sort},
       {.name = "quicksort", .f = quick_sort},
       // {.name = "selection sort", .f = selection_sort},
       {.name = "shellsort", .f = shell_sort},

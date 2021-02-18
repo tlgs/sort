@@ -2,10 +2,6 @@
 
 A study of sorting algorithms using C.
 
-```c
-void x_sort(size_t n, int32_t arr[n]);
-```
-
 ## Motivation
 
 - obtain an understanding of sorting algorithms beyond Wikipedia's initial paragraph
@@ -41,17 +37,20 @@ Key:
 For testing convenience, the program `xsort` exposes the different available algorithms:
 
 ```text
+xsort 0.1.0, a study of sorting algorithms
 Usage:
   xsort --bubble [FILE]
   xsort --cocktail [FILE]
   xsort --comb [FILE]
+  xsort --gnome [FILE]
   xsort --insertion [FILE]
   xsort --merge [FILE]
+  xsort --odd-even [FILE]
   xsort --quick [FILE]
   xsort --selection [FILE]
   xsort --shell [FILE]
   xsort --stooge [FILE]
-
+  xsort -h | --help
 Description:
   Write sorted integers to stdout.
   With no FILE, read from stdin.

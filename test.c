@@ -37,6 +37,7 @@ int main(void) {
       {.name = "gnome", .f = gnome_sort},
       {.name = "insertion", .f = insertion_sort},
       {.name = "merge", .f = merge_sort},
+      {.name = "odd-even", .f = odd_even_sort},
       {.name = "quick", .f = quick_sort},
       {.name = "selection", .f = selection_sort},
       {.name = "shell", .f = shell_sort},
@@ -83,8 +84,8 @@ int main(void) {
     char res[5];
     strcpy(res, failed ? "FAIL" : "PASS");
     int spaces_n = 10 - strlen(algo[i].name);
-    printf("[%2d/%d] %s:%*c%s\n", i + 1, SORT_ALG_N, algo[i].name, spaces_n, ' ',
-           res);
+    printf("[%2d/%d] %s:%*c%s\n", i + 1, SORT_ALG_N, algo[i].name, spaces_n,
+           ' ', res);
   }
 
   return any_failed ? EXIT_FAILURE : EXIT_SUCCESS;
