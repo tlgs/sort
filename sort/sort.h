@@ -1,7 +1,7 @@
 #ifndef SORT_H
 #define SORT_H
 
-#define SORT_ALG_N 8
+#define SORT_ALG_N 9
 
 void swap(int32_t *a, int32_t *b);
 
@@ -20,5 +20,7 @@ void quick_sort(size_t n, int32_t arr[n]);
 void selection_sort(size_t n, int32_t arr[n]);
 
 void shell_sort(size_t n, int32_t arr[n]);
+
+void stooge_sort(size_t n, int32_t arr[n]);
 
 #endif

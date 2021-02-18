@@ -13,8 +13,6 @@ typedef void sort_func(size_t n, int32_t arr[n]);
 
 void print_help(void) {
   puts("xsort 0.1.0, a study of sorting algorithms");
-  puts("Sort lines of integers");
-  puts("");
   puts("Usage:");
   puts("  xsort --bubble [FILE]");
   puts("  xsort --cocktail [FILE]");
@@ -24,7 +22,7 @@ void print_help(void) {
   puts("  xsort --quick [FILE]");
   puts("  xsort --selection [FILE]");
   puts("  xsort --shell [FILE]");
-  puts("");
+  puts("  xsort --stooge [FILE]");
   puts("Description:");
   puts("  Write sorted integers to stdout.");
   puts("  With no FILE, read from stdin.");
@@ -53,6 +51,7 @@ int main(int argc, char *argv[]) {
       {.option = "--quick", .f = quick_sort},
       {.option = "--selection", .f = selection_sort},
       {.option = "--shell", .f = shell_sort},
+      {.option = "--stooge", .f = stooge_sort},
   };
 
   int op = 0;

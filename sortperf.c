@@ -1,5 +1,5 @@
-// Sort performance test.
-// Adapted from CPython's Lib/test/sortperf.py
+// Sort performance test; adapted from CPython's Lib/test/sortperf.py
+// Array values are in the range [- RAND_MAX / 2, RAND_MAX / 2]
 //
 // Key:
 //   *sort: random data
@@ -43,16 +43,21 @@ int rand_bigger(int n) {
 }
 
 int main(void) {
-  srand(time(NULL));
+  srand(time(0));
 
   struct sort_algo {
     char *name;
     sort_func *f;
   } algo[] = {
+      // {.name = "bubble sort", .f = bubble_sort},
+      // {.name = "cocktail sort", .f = cocktail_sort},
       {.name = "comb sort", .f = comb_sort},
+      // {.name = "insertion sort", .f = insertion_sort},
       {.name = "merge sort", .f = merge_sort},
       {.name = "quicksort", .f = quick_sort},
+      // {.name = "selection sort", .f = selection_sort},
       {.name = "shellsort", .f = shell_sort},
+      // {.name = "stooge sort", .f = stooge_sort},
   };
 
   for (int op = 0; op < 4; op++) {

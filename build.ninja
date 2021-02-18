@@ -1,4 +1,4 @@
-cflags = -Wall -Wextra -Werror -pedantic
+cflags = -Wall -Wextra -Werror -pedantic -O0
 
 rule cc
   command = gcc $cflags -c $in
@@ -15,11 +15,12 @@ build merge.o: cc sort/merge.c
 build quick.o: cc sort/quick.c
 build selection.o: cc sort/selection.c
 build shell.o: cc sort/shell.c
+build stooge.o: cc sort/stooge.c
 
 build test.o: cc test.c
 build sortperf.o: cc sortperf.c
 build xsort.o: cc xsort.c
 
-build test.exe: link test.o utils.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o
-build sortperf.exe: link sortperf.o utils.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o
-build xsort.exe: link xsort.o utils.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o
+build test.exe: link test.o utils.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o stooge.o
+build sortperf.exe: link sortperf.o utils.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o stooge.o
+build xsort.exe: link xsort.o utils.o bubble.o cocktail.o comb.o insertion.o merge.o quick.o selection.o shell.o stooge.o

@@ -25,7 +25,7 @@ bool is_sorted(int n, int32_t sorted[n], int32_t arr[n]) {
 }
 
 int main(void) {
-  srand(time(NULL));
+  srand(time(0));
 
   struct sort_algo {
     char *name;
@@ -39,9 +39,10 @@ int main(void) {
       {.name = "quick", .f = quick_sort},
       {.name = "selection", .f = selection_sort},
       {.name = "shell", .f = shell_sort},
+      {.name = "stooge", .f = stooge_sort},
   };
 
-  int const arr_size[] = {1, 2, 42, 99, 100, 1337, 9999};
+  int const arr_size[] = {2, 3, 42, 99, 100, 1337};
 
   bool any_failed = false;
   for (int i = 0; i < SORT_ALG_N; i++) {

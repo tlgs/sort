@@ -2,7 +2,9 @@
 
 A study of sorting algorithms using C.
 
-Implementation only for `int32_t` values.
+```c
+void x_sort(size_t n, int32_t arr[n]);
+```
 
 ## Motivation
 
@@ -48,6 +50,7 @@ Usage:
   xsort --quick [FILE]
   xsort --selection [FILE]
   xsort --shell [FILE]
+  xsort --stooge [FILE]
 
 Description:
   Write sorted integers to stdout.
@@ -56,6 +59,5 @@ Description:
 
 ## Useful references
 
-- timsort discussion
-  ([Python's mailing list](https://mail.python.org/pipermail/python-dev/2002-July/026837.html))
-- sortperf.py ([source](https://github.com/python/cpython/blob/master/Lib/test/sortperf.py))
+- [timsort discussion (Python's mailing list)](https://mail.python.org/pipermail/python-dev/2002-July/026837.html)
+- [sortperf.py (source)](https://github.com/python/cpython/blob/master/Lib/test/sortperf.py)
