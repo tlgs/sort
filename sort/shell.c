@@ -2,7 +2,7 @@
 
 #include "sort.h"
 
-// Using Tokuda's sequence (A108870 in OEIS)
+// uses Tokuda's sequence (A108870 in the OEIS)
 void shell_sort(size_t n, int32_t arr[n]) {
   size_t const seq[30] = {
       1,         4,          9,          20,         46,          103,
@@ -15,17 +15,12 @@ void shell_sort(size_t n, int32_t arr[n]) {
     size_t k = seq[h];
     for (size_t i = k; i < n; i++) {
       int32_t x = arr[i];
-      size_t j = i - k;
-      while (arr[j] > x) {
-        arr[j + k] = arr[j];
-
-        if (j < k) {
-          j -= k;
-          break;
-        }
+      size_t j = i;
+      while (j >= k && x < arr[j - k]) {
+        arr[j] = arr[j - k];
         j -= k;
       }
-      arr[j + k] = x;
+      arr[j] = x;
     }
   }
 }
