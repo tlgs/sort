@@ -2,43 +2,31 @@
 
 #include "sort.h"
 
-void sift_down(int32_t arr[], size_t start, size_t end) {
-  size_t root = start;
-  while (root * 2 + 1 < end) {
-    size_t child = root * 2 + 1;
-    if (child + 1 < end && arr[child] < arr[child + 1]) {
-      child++;
-    }
-
-    if (arr[root] < arr[child]) {
-      swap(&arr[root], &arr[child]);
-      root = child;
-    } else {
-      return;
-    }
-  }
-}
-
-void heapify(int32_t arr[], size_t n) {
-  if (n < 3) {
+void sink(int32_t arr[], size_t i, size_t n) {
+  size_t child = 2 * i + 1;
+  if (child >= n) {
     return;
   }
-
-  size_t i = (n - 2) / 2;
-  while (i > 0) {
-    sift_down(arr, i, n);
-    i--;
+  if (child + 1 < n && arr[child + 1] > arr[child]) {
+    child++;
   }
-  sift_down(arr, 0, n);
+
+  if (arr[i] >= arr[child]) {
+    return;
+  }
+  swap(&arr[i], &arr[child]);
+  sink(arr, child, n);
 }
 
 void heap_sort(size_t n, int32_t arr[n]) {
-  heapify(arr, n);
+  if (n > 2) {
+    for (size_t i = ((n - 2) / 2) + 1; i > 0; i--) {
+      sink(arr, i - 1, n);
+    }
+  }
 
-  size_t i = n - 1;
-  while (i > 0) {
-    swap(&arr[i], &arr[0]);
-    sift_down(arr, 0, i);
-    i--;
+  for (size_t i = 1; i < n; i++) {
+    swap(&arr[0], &arr[n - i]);
+    sink(arr, 0, n - i);
   }
 }
