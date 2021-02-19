@@ -19,13 +19,12 @@ void sink(int32_t arr[], size_t i, size_t n) {
 }
 
 void heap_sort(size_t n, int32_t arr[n]) {
-  if (n > 2) {
-    for (size_t i = ((n - 2) / 2) + 1; i > 0; i--) {
-      sink(arr, i - 1, n);
-    }
+  size_t i = n < 2 ? 0 : (n - 2) / 2;
+  for (i++; i > 0; i--) {
+    sink(arr, i - 1, n);
   }
 
-  for (size_t i = 1; i < n; i++) {
+  for (i = 1; i < n; i++) {
     swap(&arr[0], &arr[n - i]);
     sink(arr, 0, n - i);
   }
