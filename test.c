@@ -45,7 +45,7 @@ int main(void) {
       {.name = "stooge", .f = stooge_sort},
   };
 
-  int const arr_size[] = {2, 3, 42, 99, 100, 1337};
+  int const arr_size[] = {1, 2, 3, 42, 99, 100, 1337};
 
   bool any_failed = false;
   for (int i = 0; i < SORT_ALG_N; i++) {
