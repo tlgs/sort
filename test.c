@@ -35,6 +35,7 @@ int main(void) {
       {.name = "cocktail", .f = cocktail_sort},
       {.name = "comb", .f = comb_sort},
       {.name = "gnome", .f = gnome_sort},
+      {.name = "heap", .f = heap_sort},
       {.name = "insertion", .f = insertion_sort},
       {.name = "merge", .f = merge_sort},
       {.name = "odd-even", .f = odd_even_sort},

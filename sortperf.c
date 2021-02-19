@@ -53,6 +53,7 @@ int main(void) {
       // {.name = "cocktail sort", .f = cocktail_sort},
       {.name = "comb sort", .f = comb_sort},
       // {.name = "gnome sort", .f = gnome_sort},
+      {.name = "heapsort", .f = heap_sort},
       // {.name = "insertion sort", .f = insertion_sort},
       {.name = "merge sort", .f = merge_sort},
       // {.name = "odd-even sort", .f = odd_even_sort},
@@ -62,7 +63,7 @@ int main(void) {
       // {.name = "stooge sort", .f = stooge_sort},
   };
 
-  for (int op = 0; op < 4; op++) {
+  for (int op = 0; op < 5; op++) {
     puts(algo[op].name);
     printf("%2s %8s  *sort  \\sort  /sort  3sort  +sort  %%sort  ~sort  =sort  "
            "!sort\n",

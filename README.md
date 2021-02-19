@@ -43,6 +43,7 @@ Usage:
   xsort --cocktail [FILE]
   xsort --comb [FILE]
   xsort --gnome [FILE]
+  xsort --heap [FILE]
   xsort --insertion [FILE]
   xsort --merge [FILE]
   xsort --odd-even [FILE]
