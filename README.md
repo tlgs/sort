@@ -17,6 +17,8 @@ it's a straight rip-off of CPython's `sortperf.py`,
 which has been used to back up discussions to changes to the
 standard library's sorting algorithm.
 
+Visualisation limited to _efficient_ algorithms.
+
 ```text
 Key:
   *sort: random data
@@ -27,14 +29,14 @@ Key:
   %sort: ascending, then randomly replace 1% of the elements w/ random values
   ~sort: many duplicates
   =sort: all equal
-  !sort: worst case scenario
+  !sort: worst case scenario (for a specific quicksort implementation)
 ```
 
 ![Sorting algorithms runtime comparison](out.svg)
 
 ## Usage
 
-For testing convenience, the program `xsort` exposes the different available algorithms:
+The `xsort` program exposes the different available algorithms:
 
 ```text
 xsort 0.1.0, a study of sorting algorithms
@@ -61,3 +63,4 @@ Description:
 
 - [timsort discussion (Python's mailing list)](https://mail.python.org/pipermail/python-dev/2002-July/026837.html)
 - [sortperf.py (source)](https://github.com/python/cpython/blob/master/Lib/test/sortperf.py)
+- [memory handling / growth factor discussion (facebook/folly docs)](https://github.com/facebook/folly/blob/master/folly/docs/FBVector.md#memory-handling)
