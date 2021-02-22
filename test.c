@@ -43,6 +43,7 @@ int main(void) {
       {.name = "selection", .f = selection_sort},
       {.name = "shell", .f = shell_sort},
       {.name = "stooge", .f = stooge_sort},
+      {.name = "weak-heap", .f = weak_heap_sort},
   };
 
   int const arr_size[] = {1, 2, 3, 42, 99, 100, 1337};

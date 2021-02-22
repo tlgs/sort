@@ -59,10 +59,11 @@ int main(int argc, char *argv[]) {
       {.option = "--selection", .f = selection_sort},
       {.option = "--shell", .f = shell_sort},
       {.option = "--stooge", .f = stooge_sort},
+      {.option = "--weak-heap", .f = weak_heap_sort},
   };
 
   int op = 0;
-  while (op < SORT_ALG_N && (strcmp(argv[1], algo[op].option) != 0)) {
+  while (op < SORT_ALG_N && strcmp(argv[1], algo[op].option) != 0) {
     op++;
   }
 
