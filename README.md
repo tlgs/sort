@@ -44,6 +44,7 @@ Usage:
   xsort --bubble [FILE]
   xsort --cocktail [FILE]
   xsort --comb [FILE]
+  xsort --cycle [FILE]
   xsort --gnome [FILE]
   xsort --heap [FILE]
   xsort --insertion [FILE]
@@ -53,6 +54,7 @@ Usage:
   xsort --selection [FILE]
   xsort --shell [FILE]
   xsort --stooge [FILE]
+  xsort --weak-heap [FILE]
   xsort -h | --help
 Description:
   Write sorted integers to stdout.

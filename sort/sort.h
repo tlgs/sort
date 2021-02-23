@@ -1,7 +1,7 @@
 #ifndef SORT_H
 #define SORT_H
 
-#define SORT_ALG_N 13
+#define SORT_ALG_N 14
 
 void swap(int32_t *a, int32_t *b);
 
@@ -10,6 +10,8 @@ void bubble_sort(size_t n, int32_t arr[n]);
 void cocktail_sort(size_t n, int32_t arr[n]);
 
 void comb_sort(size_t n, int32_t arr[n]);
+
+void cycle_sort(size_t n, int32_t arr[n]);
 
 void gnome_sort(size_t n, int32_t arr[n]);
 

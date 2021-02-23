@@ -17,6 +17,7 @@ void print_help(void) {
   puts("  xsort --bubble [FILE]");
   puts("  xsort --cocktail [FILE]");
   puts("  xsort --comb [FILE]");
+  puts("  xsort --cycle [FILE]");
   puts("  xsort --gnome [FILE]");
   puts("  xsort --heap [FILE]");
   puts("  xsort --insertion [FILE]");
@@ -26,6 +27,7 @@ void print_help(void) {
   puts("  xsort --selection [FILE]");
   puts("  xsort --shell [FILE]");
   puts("  xsort --stooge [FILE]");
+  puts("  xsort --weak-heap [FILE]");
   puts("  xsort -h | --help");
   puts("Description:");
   puts("  Write sorted integers to stdout.");
@@ -50,6 +52,7 @@ int main(int argc, char *argv[]) {
       {.option = "--bubble", .f = bubble_sort},
       {.option = "--cocktail", .f = cocktail_sort},
       {.option = "--comb", .f = comb_sort},
+      {.option = "--cycle", .f = cycle_sort},
       {.option = "--gnome", .f = gnome_sort},
       {.option = "--heap", .f = heap_sort},
       {.option = "--insertion", .f = insertion_sort},
