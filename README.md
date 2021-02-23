@@ -12,7 +12,7 @@ A study of sorting algorithms using C.
 ## Benchmark
 
 A rather simple and unscientific benchmark comparison is done with
-the `sortperf.c` program;
+the `sortperf` program;
 it's a straight rip-off of CPython's `sortperf.py`,
 which has been used to back up discussions to changes to the
 standard library's sorting algorithm.
@@ -32,11 +32,11 @@ Key:
   !sort: worst case scenario (for a specific quicksort implementation)
 ```
 
-![Sorting algorithms runtime comparison](out.svg)
+![Sorting algorithms runtime comparison](assets/out.svg)
 
 ## Usage
 
-The `xsort` program exposes the different available algorithms:
+The `xsort` program exposes the available algorithms:
 
 ```text
 xsort 0.1.0, a study of sorting algorithms

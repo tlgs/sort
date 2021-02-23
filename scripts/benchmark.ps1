@@ -1,1 +1,1 @@
-.\sortperf | python scripts/plot.py > out.svg
+.\sortperf | python scripts/plot.py > $args[0]

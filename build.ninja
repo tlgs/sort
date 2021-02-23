@@ -29,3 +29,10 @@ build xsort.o: cc xsort.c
 build test.exe: link test.o utils.o bubble.o cocktail.o comb.o cycle.o gnome.o heap.o insertion.o merge.o odd_even.o quick.o selection.o shell.o stooge.o weak_heap.o
 build sortperf.exe: link sortperf.o utils.o bubble.o cocktail.o comb.o cycle.o gnome.o heap.o insertion.o merge.o odd_even.o quick.o selection.o shell.o stooge.o weak_heap.o
 build xsort.exe: link xsort.o utils.o bubble.o cocktail.o comb.o cycle.o gnome.o heap.o insertion.o merge.o odd_even.o quick.o selection.o shell.o stooge.o weak_heap.o
+
+default sortperf.exe test.exe xsort.exe
+
+rule pwsh
+  command = powershell -c $in $out
+
+build assets/out.svg: pwsh scripts/benchmark.ps1 | scripts/plot.py sortperf.exe
