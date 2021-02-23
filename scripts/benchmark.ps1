@@ -1,1 +1,1 @@
-.\sortperf | python scripts/plot.py
+.\sortperf | python scripts/plot.py > out.svg

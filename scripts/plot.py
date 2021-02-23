@@ -36,4 +36,7 @@ if __name__ == "__main__":
         )
         g.set_axis_labels("Array size (2^N)", "Time (s)")
         g.set_titles("{col_name}")
-        g.savefig("out.svg")
+
+    output = StringIO()
+    g.savefig(output, format="svg")
+    print(output.getvalue())
