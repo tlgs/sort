@@ -1,9 +1,12 @@
 #ifndef SORT_H
 #define SORT_H
 
-#define SORT_ALG_N 14
+#define SORT_ALG_N 15
 
 void swap(int32_t *a, int32_t *b);
+
+// quicksort's partitioning is used in intro_sort
+size_t quick_partition(int32_t arr[], size_t lo, size_t hi);
 
 void bubble_sort(size_t n, int32_t arr[n]);
 
@@ -18,6 +21,8 @@ void gnome_sort(size_t n, int32_t arr[n]);
 void heap_sort(size_t n, int32_t arr[n]);
 
 void insertion_sort(size_t n, int32_t arr[n]);
+
+void intro_sort(size_t n, int32_t arr[n]);
 
 void merge_sort(size_t n, int32_t arr[n]);
 

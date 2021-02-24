@@ -21,6 +21,7 @@ void print_help(void) {
   puts("  xsort --gnome [FILE]");
   puts("  xsort --heap [FILE]");
   puts("  xsort --insertion [FILE]");
+  puts("  xsort --intro [FILE]");
   puts("  xsort --merge [FILE]");
   puts("  xsort --odd-even [FILE]");
   puts("  xsort --quick [FILE]");
@@ -56,6 +57,7 @@ int main(int argc, char *argv[]) {
       {.option = "--gnome", .f = gnome_sort},
       {.option = "--heap", .f = heap_sort},
       {.option = "--insertion", .f = insertion_sort},
+      {.option = "--intro", .f = intro_sort},
       {.option = "--merge", .f = merge_sort},
       {.option = "--odd-even", .f = odd_even_sort},
       {.option = "--quick", .f = quick_sort},

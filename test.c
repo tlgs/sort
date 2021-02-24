@@ -38,6 +38,7 @@ int main(void) {
       {.name = "gnome", .f = gnome_sort},
       {.name = "heap", .f = heap_sort},
       {.name = "insertion", .f = insertion_sort},
+      {.name = "intro", .f = intro_sort},
       {.name = "merge", .f = merge_sort},
       {.name = "odd-even", .f = odd_even_sort},
       {.name = "quick", .f = quick_sort},

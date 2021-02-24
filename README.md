@@ -48,6 +48,7 @@ Usage:
   xsort --gnome [FILE]
   xsort --heap [FILE]
   xsort --insertion [FILE]
+  xsort --intro [FILE]
   xsort --merge [FILE]
   xsort --odd-even [FILE]
   xsort --quick [FILE]
