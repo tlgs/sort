@@ -28,25 +28,19 @@ void merge(int32_t arr[], int32_t aux[], size_t l, size_t m, size_t r) {
   }
 }
 
-void ms(int32_t arr[], int32_t aux[], size_t l, size_t r) {
+void merge_sort2(int32_t arr[], int32_t aux[], size_t l, size_t r) {
   if (l >= r) {
     return;
   }
 
   size_t m = l + (r - l) / 2;
-  ms(arr, aux, l, m);
-  ms(arr, aux, m + 1, r);
+  merge_sort2(arr, aux, l, m);
+  merge_sort2(arr, aux, m + 1, r);
   merge(arr, aux, l, m, r);
 }
 
 void merge_sort(size_t n, int32_t arr[n]) {
   int32_t *aux = malloc(sizeof(int32_t) * n);
-  if (!aux) {
-    // error out, maybe?
-    return;
-  }
-
-  ms(arr, aux, 0, n - 1);
-
+  merge_sort2(arr, aux, 0, n - 1);
   free(aux);
 }
