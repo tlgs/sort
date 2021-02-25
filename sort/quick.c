@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdint.h>
 
 #include "sort.h"
@@ -20,7 +21,7 @@ size_t quick_partition(int32_t arr[], size_t lo, size_t hi) {
   int32_t pivot = arr[mid];
   size_t i = lo - 1;
   size_t j = hi + 1;
-  while (1) {
+  while (true) {
     do {
       i++;
     } while (arr[i] < pivot);
