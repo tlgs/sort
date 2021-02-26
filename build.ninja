@@ -11,6 +11,7 @@ build bubble.o: cc sort/bubble.c
 build cocktail.o: cc sort/cocktail.c
 build comb.o: cc sort/comb.c
 build cycle.o: cc sort/cycle.c
+build flash.o: cc sort/flash.c
 build gnome.o: cc sort/gnome.c
 build heap.o: cc sort/heap.c
 build insertion.o: cc sort/insertion.c
@@ -27,9 +28,9 @@ build sortperf.o: cc sortperf.c
 build test.o: cc test.c
 build xsort.o: cc xsort.c
 
-build sortperf.exe: link sortperf.o utils.o bubble.o cocktail.o comb.o cycle.o gnome.o heap.o insertion.o intro.o merge.o odd_even.o quick.o selection.o shell.o stooge.o weak_heap.o
-build test.exe: link test.o utils.o bubble.o cocktail.o comb.o cycle.o gnome.o heap.o insertion.o intro.o merge.o odd_even.o quick.o selection.o shell.o stooge.o weak_heap.o
-build xsort.exe: link xsort.o utils.o bubble.o cocktail.o comb.o cycle.o gnome.o heap.o insertion.o intro.o merge.o odd_even.o quick.o selection.o shell.o stooge.o weak_heap.o
+build sortperf.exe: link sortperf.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o odd_even.o quick.o selection.o shell.o stooge.o weak_heap.o
+build test.exe: link test.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o odd_even.o quick.o selection.o shell.o stooge.o weak_heap.o
+build xsort.exe: link xsort.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o odd_even.o quick.o selection.o shell.o stooge.o weak_heap.o
 
 default sortperf.exe test.exe xsort.exe
 

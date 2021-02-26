@@ -1,6 +1,7 @@
 # sort
 
-A study of sorting algorithms using C.
+A study of sorting algorithms using C - over 15 algorithms applied exclusively
+to integers (`int32_t`).
 
 ## Motivation
 
@@ -19,6 +20,8 @@ standard library's sorting algorithm.
 
 Visualisation limited to _efficient_ algorithms.
 
+![Sorting algorithms runtime comparison](assets/out.svg)
+
 ```text
 Key:
   *sort: random data
@@ -32,8 +35,6 @@ Key:
   !sort: worst case scenario (for a specific quicksort implementation)
 ```
 
-![Sorting algorithms runtime comparison](assets/out.svg)
-
 ## Usage
 
 The `xsort` program exposes the available algorithms:
@@ -45,6 +46,7 @@ Usage:
   xsort --cocktail [FILE]
   xsort --comb [FILE]
   xsort --cycle [FILE]
+  xsort --flash [FILE]
   xsort --gnome [FILE]
   xsort --heap [FILE]
   xsort --insertion [FILE]

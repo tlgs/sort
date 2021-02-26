@@ -53,6 +53,7 @@ int main(void) {
       // {.name = "cocktail sort", .f = cocktail_sort},
       {.name = "comb sort", .f = comb_sort},
       // {.name = "cycle sort", .f = cycle_sort},
+      {.name = "flashsort", .f = flash_sort},
       // {.name = "gnome sort", .f = gnome_sort},
       {.name = "heapsort", .f = heap_sort},
       // {.name = "insertion sort", .f = insertion_sort},
@@ -66,7 +67,7 @@ int main(void) {
       {.name = "weak-heap sort", .f = weak_heap_sort},
   };
 
-  for (int op = 0; op < 7; op++) {
+  for (int op = 0; op < 8; op++) {
     puts(algo[op].name);
     printf("%2s %8s  *sort  \\sort  /sort  3sort  +sort  %%sort  ~sort  =sort  "
            "!sort\n",

@@ -18,6 +18,7 @@ void print_help(void) {
   puts("  xsort --cocktail [FILE]");
   puts("  xsort --comb [FILE]");
   puts("  xsort --cycle [FILE]");
+  puts("  xsort --flash [FILE]");
   puts("  xsort --gnome [FILE]");
   puts("  xsort --heap [FILE]");
   puts("  xsort --insertion [FILE]");
@@ -54,6 +55,7 @@ int main(int argc, char *argv[]) {
       {.option = "--cocktail", .f = cocktail_sort},
       {.option = "--comb", .f = comb_sort},
       {.option = "--cycle", .f = cycle_sort},
+      {.option = "--flash", .f = flash_sort},
       {.option = "--gnome", .f = gnome_sort},
       {.option = "--heap", .f = heap_sort},
       {.option = "--insertion", .f = insertion_sort},
