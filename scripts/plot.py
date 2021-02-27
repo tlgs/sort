@@ -1,6 +1,7 @@
 import sys
 from io import StringIO
 
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
@@ -23,6 +24,17 @@ if __name__ == "__main__":
     )
 
     with plt.xkcd():
+        # fiddle with some of the xkcd defaults
+        # see https://matplotlib.org/3.1.1/_modules/matplotlib/pyplot.html#xkcd
+        mpl.rcParams.update(
+            {
+                "path.effects": [
+                    mpl.patheffects.withStroke(linewidth=2.5, foreground="w")
+                ],
+                "lines.linewidth": 2.25,
+            }
+        )
+
         g = sns.relplot(
             data=df,
             x="i",
