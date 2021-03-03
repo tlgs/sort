@@ -1,9 +1,7 @@
-#include <math.h>
 #include <stdint.h>
 
 #include "sort.h"
 
-// curiously, performs (a lot) better without switching to heapsort...
 void intro_sort2(int32_t arr[], size_t lo, size_t hi, uint16_t maxdepth) {
   if (hi - lo + 1 < 20) {
     insertion_sort(hi - lo + 1, arr + lo);
@@ -17,6 +15,9 @@ void intro_sort2(int32_t arr[], size_t lo, size_t hi, uint16_t maxdepth) {
 }
 
 void intro_sort(size_t n, int32_t arr[n]) {
-  uint16_t maxdepth = 2 * log2(n);
-  intro_sort2(arr, 0, n - 1, maxdepth);
+  uint16_t depth = 0;
+  for (size_t i = n; i > 1; i >>= 1) {
+    depth++;
+  }
+  intro_sort2(arr, 0, n - 1, 2 * depth);
 }
