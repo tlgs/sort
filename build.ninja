@@ -1,4 +1,4 @@
-cflags = -Wall -Wextra -Werror -pedantic -O0
+cflags = -Werror -Wall -Wextra -Wpedantic -Wshadow -O0
 
 rule cc
   command = gcc $cflags -c $in
@@ -22,15 +22,16 @@ build quick.o: cc sort/quick.c
 build selection.o: cc sort/selection.c
 build shell.o: cc sort/shell.c
 build stooge.o: cc sort/stooge.c
+build strand.o: cc sort/strand.c
 build weak_heap.o: cc sort/weak_heap.c
 
 build sortperf.o: cc sortperf.c
 build test.o: cc test.c
 build xsort.o: cc xsort.c
 
-build sortperf.exe: link sortperf.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o odd_even.o quick.o selection.o shell.o stooge.o weak_heap.o
-build test.exe: link test.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o odd_even.o quick.o selection.o shell.o stooge.o weak_heap.o
-build xsort.exe: link xsort.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o odd_even.o quick.o selection.o shell.o stooge.o weak_heap.o
+build sortperf.exe: link sortperf.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o odd_even.o quick.o selection.o shell.o stooge.o strand.o weak_heap.o
+build test.exe: link test.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o odd_even.o quick.o selection.o shell.o stooge.o strand.o weak_heap.o
+build xsort.exe: link xsort.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o odd_even.o quick.o selection.o shell.o stooge.o strand.o weak_heap.o
 
 default sortperf.exe test.exe xsort.exe
 

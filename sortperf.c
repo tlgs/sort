@@ -64,6 +64,7 @@ int main(void) {
       // {.name = "selection sort", .f = selection_sort},
       {.name = "shellsort", .f = shell_sort},
       // {.name = "stooge sort", .f = stooge_sort},
+      // {.name = "strand sort", .f = strand_sort},
       {.name = "weak-heap sort", .f = weak_heap_sort},
   };
 

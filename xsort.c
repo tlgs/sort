@@ -66,6 +66,7 @@ int main(int argc, char *argv[]) {
       {.option = "--selection", .f = selection_sort},
       {.option = "--shell", .f = shell_sort},
       {.option = "--stooge", .f = stooge_sort},
+      {.option = "--strand", .f = strand_sort},
       {.option = "--weak-heap", .f = weak_heap_sort},
   };
 
