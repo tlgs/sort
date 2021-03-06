@@ -32,6 +32,7 @@ Usage:
   xsort --selection [FILE]
   xsort --shell [FILE]
   xsort --stooge [FILE]
+  xsort --strand [FILE]
   xsort --weak-heap [FILE]
   xsort -h | --help
 Description:
