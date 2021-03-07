@@ -72,7 +72,7 @@ void strand_sort(size_t n, int32_t arr[n]) {
     node_t *prev = p;
     node_t *q = B;
     while (p) {
-      if (p->value > q->value) {
+      if (p->value >= q->value) {
         q->next = malloc(sizeof(node_t));
         q = q->next;
         q->next = 0;
