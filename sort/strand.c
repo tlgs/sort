@@ -8,13 +8,6 @@ typedef struct node {
   struct node *next;
 } node_t;
 
-void list_push_front(node_t **head, int32_t val) {
-  node_t *tmp = malloc(sizeof(node_t));
-  tmp->value = val;
-  tmp->next = *head;
-  *head = tmp;
-}
-
 int32_t list_pop_front(node_t **head) {
   node_t *second = (*head)->next;
   int32_t v = (*head)->value;
@@ -60,8 +53,13 @@ void strand_sort(size_t n, int32_t arr[n]) {
   node_t *L = malloc(sizeof(node_t));
   L->value = arr[0];
   L->next = 0;
+
+  node_t *p = L;
   for (size_t i = 1; i < n; i++) {
-    list_push_front(&L, arr[i]);
+    p->next = malloc(sizeof(node_t));
+    p = p->next;
+    p->value = arr[i];
+    p->next = 0;
   }
 
   node_t *S = 0;
@@ -70,15 +68,20 @@ void strand_sort(size_t n, int32_t arr[n]) {
     B->value = list_pop_front(&L);
     B->next = 0;
 
-    node_t *p = L;
+    p = L;
     node_t *prev = p;
+    node_t *q = B;
     while (p) {
-      if (p->value < B->value) {
+      if (p->value > q->value) {
+        q->next = malloc(sizeof(node_t));
+        q = q->next;
+        q->next = 0;
+
         if (p == L) {
-          list_push_front(&B, list_pop_front(&L));
+          q->value = list_pop_front(&L);
           p = L;
         } else {
-          list_push_front(&B, p->value);
+          q->value = p->value;
           prev->next = p->next;
           free(p);
           p = prev->next;
@@ -88,6 +91,7 @@ void strand_sort(size_t n, int32_t arr[n]) {
         p = p->next;
       }
     }
+
     strand_merge(&S, &B);
   }
 
