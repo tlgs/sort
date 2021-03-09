@@ -45,7 +45,7 @@ int rand_bigger(int n) {
 int main(void) {
   srand(time(0));
 
-  struct sort_algo {
+  struct {
     char *name;
     sort_func *f;
   } algo[] = {
@@ -68,11 +68,11 @@ int main(void) {
       {.name = "weak-heap sort", .f = weak_heap_sort},
   };
 
+  const char header[] = " i     2**i  *sort  \\sort  /sort  3sort  +sort  "
+                        "%sort  ~sort  =sort  !sort";
   for (int op = 0; op < 8; op++) {
     puts(algo[op].name);
-    printf("%2s %8s  *sort  \\sort  /sort  3sort  +sort  %%sort  ~sort  =sort  "
-           "!sort\n",
-           "i", "2**i");
+    puts(header);
 
     for (int i = 15; i <= 20; i++) {
       int n = (1 << i);

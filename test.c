@@ -7,8 +7,6 @@
 
 #include "sort/sort.h"
 
-typedef void sort_func(size_t n, int32_t arr[n]);
-
 int compare_int(void const *a, void const *b) {
   int const *A = a;
   int const *B = b;
@@ -27,7 +25,8 @@ bool is_sorted(int n, int32_t sorted[n], int32_t arr[n]) {
 int main(void) {
   srand(time(0));
 
-  struct sort_algo {
+  typedef void sort_func(size_t n, int32_t arr[n]);
+  struct {
     char *name;
     sort_func *f;
   } algo[] = {
@@ -87,11 +86,10 @@ int main(void) {
     }
     any_failed = (any_failed || failed);
 
-    char res[5];
-    strcpy(res, failed ? "FAIL" : "PASS");
-    int spaces_n = 10 - strlen(algo[i].name);
-    printf("[%2d/%d] %s:%*c%s\n", i + 1, SORT_ALG_N, algo[i].name, spaces_n,
-           ' ', res);
+    char res[2][5] = {"PASS", "FAIL"};
+    int spaces = 10 - strlen(algo[i].name);
+    printf("[%2d/%d] %s:%*c%s\n", i + 1, SORT_ALG_N, algo[i].name, spaces, ' ',
+           res[failed]);
   }
 
   return any_failed ? EXIT_FAILURE : EXIT_SUCCESS;

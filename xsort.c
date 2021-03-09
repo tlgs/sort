@@ -9,8 +9,6 @@
 #define INIT_CAP 1024
 #define K 1.5
 
-typedef void sort_func(size_t n, int32_t arr[n]);
-
 void print_help(void) {
   puts("xsort 0.1.0, a study of sorting algorithms");
   puts("Usage:");
@@ -29,6 +27,7 @@ void print_help(void) {
   puts("  xsort --selection [FILE]");
   puts("  xsort --shell [FILE]");
   puts("  xsort --stooge [FILE]");
+  puts("  xsort --strand [FILE]");
   puts("  xsort --weak-heap [FILE]");
   puts("  xsort -h | --help");
   puts("Description:");
@@ -47,7 +46,8 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  struct sort_algo {
+  typedef void sort_func(size_t n, int32_t arr[n]);
+  struct {
     char *option;
     sort_func *f;
   } algo[] = {
