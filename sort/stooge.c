@@ -16,4 +16,10 @@ void stooge_sort2(int32_t arr[], size_t lo, size_t hi) {
   }
 }
 
-void stooge_sort(size_t n, int32_t arr[n]) { stooge_sort2(arr, 0, n); }
+void stooge_sort(size_t n, int32_t arr[n]) {
+  if (n == 0) {
+    return;
+  }
+
+  stooge_sort2(arr, 0, n);
+}

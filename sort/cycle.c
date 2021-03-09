@@ -5,6 +5,10 @@
 #include "sort.h"
 
 void cycle_sort(size_t n, int32_t arr[n]) {
+  if (n == 0) {
+    return;
+  }
+
   for (size_t start = 0; start < n - 1; start++) {
     bool first = true;
     size_t pos;

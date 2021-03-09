@@ -47,4 +47,10 @@ void quick_sort2(int32_t arr[], size_t lo, size_t hi) {
   quick_sort2(arr, p + 1, hi);
 }
 
-void quick_sort(size_t n, int32_t arr[n]) { quick_sort2(arr, 0, n - 1); }
+void quick_sort(size_t n, int32_t arr[n]) {
+  if (n == 0) {
+    return;
+  }
+
+  quick_sort2(arr, 0, n - 1);
+}

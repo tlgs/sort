@@ -4,6 +4,10 @@
 #include "sort.h"
 
 void odd_even_sort(size_t n, int32_t arr[n]) {
+  if (n == 0) {
+    return;
+  }
+
   bool swapped;
   do {
     swapped = false;

@@ -40,6 +40,10 @@ void merge_sort2(int32_t arr[], int32_t aux[], size_t l, size_t r) {
 }
 
 void merge_sort(size_t n, int32_t arr[n]) {
+  if (n == 0) {
+    return;
+  }
+
   int32_t *aux = malloc(sizeof(int32_t) * n);
   merge_sort2(arr, aux, 0, n - 1);
   free(aux);

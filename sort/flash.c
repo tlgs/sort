@@ -5,9 +5,13 @@
 
 // see: https://www.drdobbs.com/database/the-flashsort1-algorithm/184410496
 void flash_sort(size_t n, int32_t arr[n]) {
+  if (n == 0) {
+    return;
+  }
+
   int32_t min = arr[0];
   int32_t max = arr[0];
-  for (size_t i = 0; i < n; i++) {
+  for (size_t i = 1; i < n; i++) {
     if (arr[i] > max) {
       max = arr[i];
     } else if (arr[i] < min) {
@@ -42,6 +46,7 @@ void flash_sort(size_t n, int32_t arr[n]) {
       } while (j != i);
     }
   }
+  free(bucket);
 
   // performing insertion sort on each individual bucket is
   // equivalent to running it over the whole array
