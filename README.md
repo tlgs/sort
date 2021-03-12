@@ -27,6 +27,7 @@ Usage:
   xsort --insertion [FILE]
   xsort --intro [FILE]
   xsort --merge [FILE]
+  xsort --msd-radix [FILE]
   xsort --odd-even [FILE]
   xsort --quick [FILE]
   xsort --selection [FILE]

@@ -17,6 +17,7 @@ build heap.o: cc sort/heap.c
 build insertion.o: cc sort/insertion.c
 build intro.o: cc sort/intro.c
 build merge.o: cc sort/merge.c
+build msd_radix.o: cc sort/msd_radix.c
 build odd_even.o: cc sort/odd_even.c
 build quick.o: cc sort/quick.c
 build selection.o: cc sort/selection.c
@@ -29,9 +30,9 @@ build sortperf.o: cc sortperf.c
 build test.o: cc test.c
 build xsort.o: cc xsort.c
 
-build sortperf.exe: link sortperf.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o odd_even.o quick.o selection.o shell.o stooge.o strand.o weak_heap.o
-build test.exe: link test.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o odd_even.o quick.o selection.o shell.o stooge.o strand.o weak_heap.o
-build xsort.exe: link xsort.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o odd_even.o quick.o selection.o shell.o stooge.o strand.o weak_heap.o
+build sortperf.exe: link sortperf.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o msd_radix.o odd_even.o quick.o selection.o shell.o stooge.o strand.o weak_heap.o
+build test.exe: link test.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o msd_radix.o odd_even.o quick.o selection.o shell.o stooge.o strand.o weak_heap.o
+build xsort.exe: link xsort.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o msd_radix.o odd_even.o quick.o selection.o shell.o stooge.o strand.o weak_heap.o
 
 default sortperf.exe test.exe xsort.exe
 

@@ -59,6 +59,7 @@ int main(void) {
       // {.name = "insertion sort", .f = insertion_sort},
       {.name = "introsort", .f = intro_sort},
       {.name = "merge sort", .f = merge_sort},
+      {.name = "MSD radix sort", .f = msd_radix_sort},
       // {.name = "odd-even sort", .f = odd_even_sort},
       {.name = "quicksort", .f = quick_sort},
       // {.name = "selection sort", .f = selection_sort},
@@ -70,7 +71,7 @@ int main(void) {
 
   const char header[] = " i     2**i  *sort  \\sort  /sort  3sort  +sort  "
                         "%sort  ~sort  =sort  !sort";
-  for (int op = 0; op < 8; op++) {
+  for (int op = 0; op < 9; op++) {
     puts(algo[op].name);
     puts(header);
 

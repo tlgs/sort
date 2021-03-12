@@ -22,6 +22,7 @@ void print_help(void) {
   puts("  xsort --insertion [FILE]");
   puts("  xsort --intro [FILE]");
   puts("  xsort --merge [FILE]");
+  puts("  xsort --msd-radix [FILE]");
   puts("  xsort --odd-even [FILE]");
   puts("  xsort --quick [FILE]");
   puts("  xsort --selection [FILE]");
@@ -61,6 +62,7 @@ int main(int argc, char *argv[]) {
       {.option = "--insertion", .f = insertion_sort},
       {.option = "--intro", .f = intro_sort},
       {.option = "--merge", .f = merge_sort},
+      {.option = "--msd-radix", .f = msd_radix_sort},
       {.option = "--odd-even", .f = odd_even_sort},
       {.option = "--quick", .f = quick_sort},
       {.option = "--selection", .f = selection_sort},

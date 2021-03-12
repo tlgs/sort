@@ -40,6 +40,7 @@ int main(void) {
       {.name = "insertion", .f = insertion_sort},
       {.name = "intro", .f = intro_sort},
       {.name = "merge", .f = merge_sort},
+      {.name = "msd-radix", .f = msd_radix_sort},
       {.name = "odd-even", .f = odd_even_sort},
       {.name = "quick", .f = quick_sort},
       {.name = "selection", .f = selection_sort},
