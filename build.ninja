@@ -1,39 +1,38 @@
 cflags = -Werror -Wall -Wextra -Wpedantic -Wshadow -O0
 
 rule cc
-  command = gcc $cflags -c $in
+  command = gcc $cflags -c $in -o $out
 
 rule link
   command = gcc $cflags $in -o $out
 
-build utils.o: cc sort/utils.c
-build bubble.o: cc sort/bubble.c
-build cocktail.o: cc sort/cocktail.c
-build comb.o: cc sort/comb.c
-build cycle.o: cc sort/cycle.c
-build flash.o: cc sort/flash.c
-build gnome.o: cc sort/gnome.c
-build heap.o: cc sort/heap.c
-build insertion.o: cc sort/insertion.c
-build intro.o: cc sort/intro.c
-build merge.o: cc sort/merge.c
-build msd_radix.o: cc sort/msd_radix.c
-build odd_even.o: cc sort/odd_even.c
-build quick.o: cc sort/quick.c
-build selection.o: cc sort/selection.c
-build shell.o: cc sort/shell.c
-build stooge.o: cc sort/stooge.c
-build strand.o: cc sort/strand.c
-build weak_heap.o: cc sort/weak_heap.c
+build obj/utils.o: cc sort/utils.c
+build obj/bubble.o: cc sort/bubble.c
+build obj/cocktail.o: cc sort/cocktail.c
+build obj/comb.o: cc sort/comb.c
+build obj/cycle.o: cc sort/cycle.c
+build obj/flash.o: cc sort/flash.c
+build obj/gnome.o: cc sort/gnome.c
+build obj/heap.o: cc sort/heap.c
+build obj/insertion.o: cc sort/insertion.c
+build obj/intro.o: cc sort/intro.c
+build obj/merge.o: cc sort/merge.c
+build obj/msd_radix.o: cc sort/msd_radix.c
+build obj/odd_even.o: cc sort/odd_even.c
+build obj/quick.o: cc sort/quick.c
+build obj/selection.o: cc sort/selection.c
+build obj/shell.o: cc sort/shell.c
+build obj/stooge.o: cc sort/stooge.c
+build obj/strand.o: cc sort/strand.c
+build obj/weak_heap.o: cc sort/weak_heap.c
 
-build sortperf.o: cc sortperf.c
-build test.o: cc test.c
-build xsort.o: cc xsort.c
+build obj/sortperf.o: cc sortperf.c
+build obj/test.o: cc test.c
+build obj/xsort.o: cc xsort.c
 
-build sortperf.exe: link sortperf.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o msd_radix.o odd_even.o quick.o selection.o shell.o stooge.o strand.o weak_heap.o
-build test.exe: link test.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o msd_radix.o odd_even.o quick.o selection.o shell.o stooge.o strand.o weak_heap.o
-build xsort.exe: link xsort.o utils.o bubble.o cocktail.o comb.o cycle.o flash.o gnome.o heap.o insertion.o intro.o merge.o msd_radix.o odd_even.o quick.o selection.o shell.o stooge.o strand.o weak_heap.o
-
+build sortperf.exe: link obj/sortperf.o obj/utils.o obj/bubble.o obj/cocktail.o obj/comb.o obj/cycle.o obj/flash.o obj/gnome.o obj/heap.o obj/insertion.o obj/intro.o obj/merge.o obj/msd_radix.o obj/odd_even.o obj/quick.o obj/selection.o obj/shell.o obj/stooge.o obj/strand.o obj/weak_heap.o
+build test.exe: link obj/test.o obj/utils.o obj/bubble.o obj/cocktail.o obj/comb.o obj/cycle.o obj/flash.o obj/gnome.o obj/heap.o obj/insertion.o obj/intro.o obj/merge.o obj/msd_radix.o obj/odd_even.o obj/quick.o obj/selection.o obj/shell.o obj/stooge.o obj/strand.o obj/weak_heap.o
+build xsort.exe: link obj/xsort.o obj/utils.o obj/bubble.o obj/cocktail.o obj/comb.o obj/cycle.o obj/flash.o obj/gnome.o obj/heap.o obj/insertion.o obj/intro.o obj/merge.o obj/msd_radix.o obj/odd_even.o obj/quick.o obj/selection.o obj/shell.o obj/stooge.o obj/strand.o obj/weak_heap.o
 default sortperf.exe test.exe xsort.exe
 
 rule pwsh
