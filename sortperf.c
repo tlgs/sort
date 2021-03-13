@@ -19,6 +19,16 @@
 
 #include "sort/sort.h"
 
+// skeeto's simplified PCG
+// see: <https://nullprogram.com/blog/2017/09/21/>
+uint32_t spcg32(uint64_t s[1]) {
+  uint64_t m = 0x9b60933458e17d7d;
+  uint64_t a = 0xd737232eeccdf7ed;
+  *s = *s * m + a;
+  int shift = 29 - (*s >> 61);
+  return *s >> shift;
+}
+
 typedef void sort_func(size_t n, int32_t arr[n]);
 
 void do_it(int n, int arr[n], sort_func *f) {
@@ -28,22 +38,9 @@ void do_it(int n, int arr[n], sort_func *f) {
   printf("%6.2f ", (double)(end - begin) / CLOCKS_PER_SEC);
 }
 
-// rand() only returns a number up to RAND_MAX (which is only guaranteed to be
-// at least 32767).
-// A simple way to obtain higher numbers is to sum up multiple rand() calls.
-// If we want our upper bound to be *n*,
-// we call it (n / RAND_MAX) + 1 times.
-int rand_bigger(int n) {
-  int k = (n / RAND_MAX) + 1;
-  int r = 0;
-  for (int i = 0; i < k; i++) {
-    r += rand();
-  }
-  return r % n;
-}
-
 int main(void) {
-  srand(time(0));
+  uint64_t rng[] = {0x9e8480dd162324e1};
+  *rng ^= time(0);
 
   struct {
     char *name;
@@ -87,7 +84,7 @@ int main(void) {
 
       // *sort
       for (int j = 0; j < n; j++) {
-        arr[j] = rand() - RAND_MAX / 2;
+        arr[j] = spcg32(rng);
       }
       do_it(n, arr, algo[op].f);
 
@@ -102,22 +99,22 @@ int main(void) {
 
       // 3sort
       for (int j = 0; j < 3; j++) {
-        int idx_a = rand_bigger(n);
-        int idx_b = rand_bigger(n);
+        uint64_t idx_a = spcg32(rng) % n;
+        uint64_t idx_b = spcg32(rng) % n;
         swap(&arr[idx_a], &arr[idx_b]);
       }
       do_it(n, arr, algo[op].f);
 
       // +sort
       for (int j = n - 10; j < n; j++) {
-        arr[j] = rand() - RAND_MAX / 2;
+        arr[j] = spcg32(rng);
       }
       do_it(n, arr, algo[op].f);
 
       // %sort
       for (int j = 0; j < n / 100; j++) {
-        int idx = rand_bigger(n);
-        arr[idx] = rand() - RAND_MAX / 2;
+        uint64_t idx = spcg32(rng) % n;
+        arr[idx] = spcg32(rng);
       }
       do_it(n, arr, algo[op].f);
 

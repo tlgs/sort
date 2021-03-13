@@ -72,3 +72,4 @@ Key:
 - [sortperf.py (source)](https://github.com/python/cpython/blob/master/Lib/test/sortperf.py)
 - [memory handling / growth factor discussion (facebook/folly docs)](https://github.com/facebook/folly/blob/master/folly/docs/FBVector.md#memory-handling)
 - [How to C in 2016 (blog post)](https://matt.sh/howto-c)
+- [PRNG discussion (blog post)](https://nullprogram.com/blog/2017/09/21/)

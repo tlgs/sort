@@ -7,6 +7,16 @@
 
 #include "sort/sort.h"
 
+// skeeto's simplified PCG
+// see: <https://nullprogram.com/blog/2017/09/21/>
+uint32_t spcg32(uint64_t s[1]) {
+  uint64_t m = 0x9b60933458e17d7d;
+  uint64_t a = 0xd737232eeccdf7ed;
+  *s = *s * m + a;
+  int shift = 29 - (*s >> 61);
+  return *s >> shift;
+}
+
 int compare_int(void const *a, void const *b) {
   int const *A = a;
   int const *B = b;
@@ -23,7 +33,8 @@ bool is_sorted(int n, int32_t sorted[n], int32_t arr[n]) {
 }
 
 int main(void) {
-  srand(time(0));
+  uint64_t rng[] = {0x9e8480dd162324e1};
+  *rng ^= time(0);
 
   typedef void sort_func(size_t n, int32_t arr[n]);
   struct {
@@ -68,7 +79,7 @@ int main(void) {
         return EXIT_FAILURE;
       }
       for (int k = 0; k < n; k++) {
-        r[k] = rand() - RAND_MAX / 2;
+        r[k] = spcg32(rng);
         s[k] = r[k];
       }
       qsort(s, n, sizeof(int32_t), compare_int);
