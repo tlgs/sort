@@ -1,7 +1,7 @@
 #ifndef SORT_H
 #define SORT_H
 
-#define SORT_ALG_N 18
+#define SORT_ALG_N 19
 
 void bubble_sort(size_t n, int32_t arr[n]);
 
@@ -20,6 +20,8 @@ void heap_sort(size_t n, int32_t arr[n]);
 void insertion_sort(size_t n, int32_t arr[n]);
 
 void intro_sort(size_t n, int32_t arr[n]);
+
+void lsd_radix_sort(size_t n, int32_t arr[n]);
 
 void merge_sort(size_t n, int32_t arr[n]);
 

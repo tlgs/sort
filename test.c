@@ -7,19 +7,11 @@
 
 #include "sort/sort.h"
 
-// skeeto's simplified PCG
-// see: <https://nullprogram.com/blog/2017/09/21/>
-uint32_t spcg32(uint64_t s[1]) {
-  uint64_t m = 0x9b60933458e17d7d;
-  uint64_t a = 0xd737232eeccdf7ed;
-  *s = *s * m + a;
-  int shift = 29 - (*s >> 61);
-  return *s >> shift;
-}
+typedef void sort_func(size_t n, int32_t arr[n]);
 
 int compare_int(void const *a, void const *b) {
-  int const *A = a;
-  int const *B = b;
+  int32_t const *A = a;
+  int32_t const *B = b;
   return (*A > *B) - (*A < *B);
 }
 
@@ -32,11 +24,20 @@ bool is_sorted(int n, int32_t sorted[n], int32_t arr[n]) {
   return true;
 }
 
+// skeeto's simplified PCG
+// <https://nullprogram.com/blog/2017/09/21/>
+uint32_t spcg32(uint64_t s[1]) {
+  uint64_t m = 0x9b60933458e17d7d;
+  uint64_t a = 0xd737232eeccdf7ed;
+  *s = *s * m + a;
+  int shift = 29 - (*s >> 61);
+  return *s >> shift;
+}
+
 int main(void) {
   uint64_t rng[] = {0x9e8480dd162324e1};
   *rng ^= time(0);
 
-  typedef void sort_func(size_t n, int32_t arr[n]);
   struct {
     char *name;
     sort_func *f;
@@ -50,6 +51,7 @@ int main(void) {
       {.name = "heap", .f = heap_sort},
       {.name = "insertion", .f = insertion_sort},
       {.name = "intro", .f = intro_sort},
+      {.name = "lsd-radix", .f = lsd_radix_sort},
       {.name = "merge", .f = merge_sort},
       {.name = "msd-radix", .f = msd_radix_sort},
       {.name = "odd-even", .f = odd_even_sort},

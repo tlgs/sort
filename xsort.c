@@ -9,6 +9,8 @@
 #define INIT_CAP 1024
 #define K 1.5
 
+typedef void sort_func(size_t n, int32_t arr[n]);
+
 void print_help(void) {
   puts("xsort 0.1.0, a study of sorting algorithms");
   puts("Usage:");
@@ -21,6 +23,7 @@ void print_help(void) {
   puts("  xsort --heap [FILE]");
   puts("  xsort --insertion [FILE]");
   puts("  xsort --intro [FILE]");
+  puts("  xsort --lsd-radix [FILE]");
   puts("  xsort --merge [FILE]");
   puts("  xsort --msd-radix [FILE]");
   puts("  xsort --odd-even [FILE]");
@@ -47,7 +50,6 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  typedef void sort_func(size_t n, int32_t arr[n]);
   struct {
     char *option;
     sort_func *f;
@@ -61,6 +63,7 @@ int main(int argc, char *argv[]) {
       {.option = "--heap", .f = heap_sort},
       {.option = "--insertion", .f = insertion_sort},
       {.option = "--intro", .f = intro_sort},
+      {.option = "--lsd-radix", .f = lsd_radix_sort},
       {.option = "--merge", .f = merge_sort},
       {.option = "--msd-radix", .f = msd_radix_sort},
       {.option = "--odd-even", .f = odd_even_sort},

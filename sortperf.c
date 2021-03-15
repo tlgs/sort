@@ -1,16 +1,4 @@
-// Sort performance test; adapted from CPython's Lib/test/sortperf.py
-// Array values are in the range [- RAND_MAX / 2, RAND_MAX / 2]
-//
-// Key:
-//   *sort: random data
-//   \sort: descending data
-//   /sort: ascending data
-//   3sort: ascending, then 3 random exchanges
-//   +sort: ascending, then 10 random at the end
-//   %sort: ascending, then randomly replace 1% of the elements w/ random values
-//   ~sort: many duplicates
-//   =sort: all equal
-//   !sort: worst case scenario
+// Sort performance test - adapted from CPython's Lib/test/sortperf.py
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,16 +7,6 @@
 
 #include "sort/sort.h"
 
-// skeeto's simplified PCG
-// see: <https://nullprogram.com/blog/2017/09/21/>
-uint32_t spcg32(uint64_t s[1]) {
-  uint64_t m = 0x9b60933458e17d7d;
-  uint64_t a = 0xd737232eeccdf7ed;
-  *s = *s * m + a;
-  int shift = 29 - (*s >> 61);
-  return *s >> shift;
-}
-
 typedef void sort_func(size_t n, int32_t arr[n]);
 
 void do_it(int n, int arr[n], sort_func *f) {
@@ -36,6 +14,16 @@ void do_it(int n, int arr[n], sort_func *f) {
   f(n, arr);
   clock_t end = clock();
   printf("%6.2f ", (double)(end - begin) / CLOCKS_PER_SEC);
+}
+
+// skeeto's simplified PCG
+// <https://nullprogram.com/blog/2017/09/21/>
+uint32_t spcg32(uint64_t s[1]) {
+  uint64_t m = 0x9b60933458e17d7d;
+  uint64_t a = 0xd737232eeccdf7ed;
+  *s = *s * m + a;
+  int shift = 29 - (*s >> 61);
+  return *s >> shift;
 }
 
 int main(void) {
@@ -55,6 +43,7 @@ int main(void) {
       {.name = "heapsort", .f = heap_sort},
       // {.name = "insertion sort", .f = insertion_sort},
       {.name = "introsort", .f = intro_sort},
+      {.name = "LSD radix sort", .f = lsd_radix_sort},
       {.name = "merge sort", .f = merge_sort},
       {.name = "MSD radix sort", .f = msd_radix_sort},
       // {.name = "odd-even sort", .f = odd_even_sort},
@@ -66,11 +55,10 @@ int main(void) {
       {.name = "weak-heap sort", .f = weak_heap_sort},
   };
 
-  const char header[] = " i     2**i  *sort  \\sort  /sort  3sort  +sort  "
-                        "%sort  ~sort  =sort  !sort";
-  for (int op = 0; op < 9; op++) {
+  for (int op = 0; op < 10; op++) {
     puts(algo[op].name);
-    puts(header);
+    puts(" i     2**i  *sort  \\sort  /sort  "
+         "3sort  +sort  %sort  ~sort  =sort  !sort");
 
     for (int i = 15; i <= 20; i++) {
       int n = (1 << i);
@@ -82,22 +70,22 @@ int main(void) {
         return EXIT_FAILURE;
       }
 
-      // *sort
+      // *sort (random data)
       for (int j = 0; j < n; j++) {
         arr[j] = spcg32(rng);
       }
       do_it(n, arr, algo[op].f);
 
-      // \sort
+      // \sort (descending data)
       for (int j = 0; j < n / 2; j++) {
         swap(&arr[j], &arr[n - j - 1]);
       }
       do_it(n, arr, algo[op].f);
 
-      // /sort
+      // /sort (ascending data)
       do_it(n, arr, algo[op].f);
 
-      // 3sort
+      // 3sort (ascending, then 3 random exchanges)
       for (int j = 0; j < 3; j++) {
         uint64_t idx_a = spcg32(rng) % n;
         uint64_t idx_b = spcg32(rng) % n;
@@ -105,20 +93,20 @@ int main(void) {
       }
       do_it(n, arr, algo[op].f);
 
-      // +sort
+      // +sort (ascending, then 10 random at the end)
       for (int j = n - 10; j < n; j++) {
         arr[j] = spcg32(rng);
       }
       do_it(n, arr, algo[op].f);
 
-      // %sort
+      // %sort (ascending, then randomly replace 1% of the elements w/ random values)
       for (int j = 0; j < n / 100; j++) {
         uint64_t idx = spcg32(rng) % n;
         arr[idx] = spcg32(rng);
       }
       do_it(n, arr, algo[op].f);
 
-      // ~sort
+      // ~sort (many duplicates)
       for (int j = 4; j < n; j += 4) {
         arr[j] = arr[0];
         arr[j + 1] = arr[1];
@@ -127,13 +115,13 @@ int main(void) {
       }
       do_it(n, arr, algo[op].f);
 
-      // =sort
+      // =sort (all equal)
       for (int j = 0; j < n; j++) {
         arr[j] = 42;
       }
       do_it(n, arr, algo[op].f);
 
-      // !sort
+      // !sort (orst case scenario)
       int half = n / 2;
       for (int j = 0; j < half; j++) {
         arr[j] = half - 1 - j;

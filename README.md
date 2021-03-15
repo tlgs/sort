@@ -26,6 +26,7 @@ Usage:
   xsort --heap [FILE]
   xsort --insertion [FILE]
   xsort --intro [FILE]
+  xsort --lsd-radix [FILE]
   xsort --merge [FILE]
   xsort --msd-radix [FILE]
   xsort --odd-even [FILE]
@@ -51,7 +52,7 @@ standard library's sorting algorithm.
 
 Visualisation limited to _efficient_ algorithms.
 
-![Sorting algorithms runtime comparison](assets/out.svg)
+![Sorting algorithms runtime comparison](out.svg)
 
 ```text
 Key:
