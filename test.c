@@ -9,17 +9,13 @@
 
 typedef void sort_func(size_t n, int32_t arr[n]);
 
-int compare_int(void const *a, void const *b) {
-  int32_t const *A = a;
-  int32_t const *B = b;
-  return (*A > *B) - (*A < *B);
-}
-
-bool is_sorted(int n, int32_t sorted[n], int32_t arr[n]) {
+bool is_sorted(int n, int32_t arr[n]) {
+  int32_t prev = INT32_MIN;
   for (int i = 0; i < n; i++) {
-    if (arr[i] != sorted[i]) {
+    if (arr[i] < prev) {
       return false;
     }
+    prev = arr[i];
   }
   return true;
 }
@@ -63,6 +59,7 @@ int main(void) {
       {.name = "weak-heap", .f = weak_heap_sort},
   };
 
+  int32_t arr[1337] = {0};
   int const arr_size[] = {0, 1, 2, 3, 42, 99, 100, 1337};
 
   bool any_failed = false;
@@ -72,38 +69,18 @@ int main(void) {
     for (int j = 0; j < runs && !failed; j++) {
       int n = arr_size[j];
 
-      int32_t *r = malloc(sizeof(int32_t) * n);
-      if (!r) {
-        return EXIT_FAILURE;
-      }
-      int32_t *s = malloc(sizeof(int32_t) * n);
-      if (!s) {
-        return EXIT_FAILURE;
-      }
       for (int k = 0; k < n; k++) {
-        r[k] = spcg32(rng);
-        s[k] = r[k];
+        arr[k] = spcg32(rng);
       }
-      qsort(s, n, sizeof(int32_t), compare_int);
 
-      int32_t *a = malloc(sizeof(int32_t) * n);
-      if (!a) {
-        return EXIT_FAILURE;
-      }
-      memcpy(a, r, sizeof(int32_t) * n);
-      algo[i].f(n, a);
-      failed = !is_sorted(n, s, a);
-
-      free(r);
-      free(s);
-      free(a);
+      algo[i].f(n, arr);
+      failed = !is_sorted(n, arr);
     }
-    any_failed = (any_failed || failed);
 
     char res[2][5] = {"PASS", "FAIL"};
-    int spaces = 10 - strlen(algo[i].name);
-    printf("[%2d/%d] %s:%*c%s\n", i + 1, SORT_ALG_N, algo[i].name, spaces, ' ',
-           res[failed]);
+    printf("[%2d/%d] %-9s %s\n", i + 1, SORT_ALG_N, algo[i].name, res[failed]);
+
+    any_failed = (any_failed || failed);
   }
 
   return any_failed ? EXIT_FAILURE : EXIT_SUCCESS;
