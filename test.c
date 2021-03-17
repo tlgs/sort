@@ -2,16 +2,15 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <time.h>
 
 #include "sort/sort.h"
 
 typedef void sort_func(size_t n, int32_t arr[n]);
 
-bool is_sorted(int n, int32_t arr[n]) {
+bool is_sorted(size_t n, int32_t arr[n]) {
   int32_t prev = INT32_MIN;
-  for (int i = 0; i < n; i++) {
+  for (size_t i = 0; i < n; i++) {
     if (arr[i] < prev) {
       return false;
     }
@@ -60,16 +59,16 @@ int main(void) {
   };
 
   int32_t arr[1337] = {0};
-  int const arr_size[] = {0, 1, 2, 3, 42, 99, 100, 1337};
+  size_t const arr_size[] = {0, 1, 2, 3, 42, 99, 100, 1337};
 
   bool any_failed = false;
-  for (int i = 0; i < SORT_ALG_N; i++) {
+  for (size_t i = 0; i < SORT_ALG_N; i++) {
     bool failed = false;
-    int runs = sizeof(arr_size) / sizeof(arr_size[0]);
-    for (int j = 0; j < runs && !failed; j++) {
-      int n = arr_size[j];
+    size_t runs = sizeof(arr_size) / sizeof(arr_size[0]);
+    for (size_t j = 0; j < runs && !failed; j++) {
+      size_t n = arr_size[j];
 
-      for (int k = 0; k < n; k++) {
+      for (size_t k = 0; k < n; k++) {
         arr[k] = spcg32(rng);
       }
 
@@ -78,7 +77,7 @@ int main(void) {
     }
 
     char res[2][5] = {"PASS", "FAIL"};
-    printf("[%2d/%d] %-9s %s\n", i + 1, SORT_ALG_N, algo[i].name, res[failed]);
+    printf("[%2zu/%d] %-9s %s\n", i + 1, SORT_ALG_N, algo[i].name, res[failed]);
 
     any_failed = (any_failed || failed);
   }

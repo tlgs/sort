@@ -9,7 +9,7 @@
 
 typedef void sort_func(size_t n, int32_t arr[n]);
 
-void do_it(int n, int arr[n], sort_func *f) {
+void do_it(size_t n, int32_t arr[n], sort_func *f) {
   clock_t begin = clock();
   f(n, arr);
   clock_t end = clock();
@@ -55,14 +55,14 @@ int main(void) {
       {.name = "weak-heap sort", .f = weak_heap_sort},
   };
 
-  for (int op = 0; op < 10; op++) {
+  for (size_t op = 0; op < 10; op++) {
     puts(algo[op].name);
     puts(" i     2**i  *sort  \\sort  /sort  "
          "3sort  +sort  %sort  ~sort  =sort  !sort");
 
-    for (int i = 15; i <= 20; i++) {
-      int n = (1 << i);
-      printf("%2d %8d ", i, n);
+    for (size_t i = 15; i <= 20; i++) {
+      size_t n = (1 << i);
+      printf("%2zu %8zu ", i, n);
 
       int32_t *arr = malloc(sizeof(int32_t) * n);
       if (!arr) {
@@ -71,13 +71,13 @@ int main(void) {
       }
 
       // *sort (random data)
-      for (int j = 0; j < n; j++) {
+      for (size_t j = 0; j < n; j++) {
         arr[j] = spcg32(rng);
       }
       do_it(n, arr, algo[op].f);
 
       // \sort (descending data)
-      for (int j = 0; j < n / 2; j++) {
+      for (size_t j = 0; j < n / 2; j++) {
         swap(&arr[j], &arr[n - j - 1]);
       }
       do_it(n, arr, algo[op].f);
@@ -86,28 +86,28 @@ int main(void) {
       do_it(n, arr, algo[op].f);
 
       // 3sort (ascending, then 3 random exchanges)
-      for (int j = 0; j < 3; j++) {
-        uint64_t idx_a = spcg32(rng) % n;
-        uint64_t idx_b = spcg32(rng) % n;
+      for (size_t j = 0; j < 3; j++) {
+        size_t idx_a = spcg32(rng) % n;
+        size_t idx_b = spcg32(rng) % n;
         swap(&arr[idx_a], &arr[idx_b]);
       }
       do_it(n, arr, algo[op].f);
 
       // +sort (ascending, then 10 random at the end)
-      for (int j = n - 10; j < n; j++) {
+      for (size_t j = n - 10; j < n; j++) {
         arr[j] = spcg32(rng);
       }
       do_it(n, arr, algo[op].f);
 
       // %sort (ascending, then randomly replace 1% of the elements w/ random values)
-      for (int j = 0; j < n / 100; j++) {
-        uint64_t idx = spcg32(rng) % n;
+      for (size_t j = 0; j < n / 100; j++) {
+        size_t idx = spcg32(rng) % n;
         arr[idx] = spcg32(rng);
       }
       do_it(n, arr, algo[op].f);
 
       // ~sort (many duplicates)
-      for (int j = 4; j < n; j += 4) {
+      for (size_t j = 4; j < n; j += 4) {
         arr[j] = arr[0];
         arr[j + 1] = arr[1];
         arr[j + 2] = arr[2];
@@ -116,17 +116,17 @@ int main(void) {
       do_it(n, arr, algo[op].f);
 
       // =sort (all equal)
-      for (int j = 0; j < n; j++) {
+      for (size_t j = 0; j < n; j++) {
         arr[j] = 42;
       }
       do_it(n, arr, algo[op].f);
 
       // !sort (orst case scenario)
-      int half = n / 2;
-      for (int j = 0; j < half; j++) {
+      size_t half = n / 2;
+      for (size_t j = 0; j < half; j++) {
         arr[j] = half - 1 - j;
       }
-      for (int j = 0; j < half; j++) {
+      for (size_t j = 0; j < half; j++) {
         arr[half + j] = j;
       }
       do_it(n, arr, algo[op].f);
