@@ -1,4 +1,4 @@
-cflags = -Werror -Wall -Wextra -Wpedantic -Wshadow -O0 -D __USE_MINGW_ANSI_STDIO
+cflags = -Werror -Wall -Wextra -Wpedantic -Wshadow -O0
 
 rule cc
   command = gcc $cflags -c $in -o $out
@@ -31,12 +31,12 @@ build obj/sortperf.o: cc sortperf.c
 build obj/test.o: cc test.c
 build obj/xsort.o: cc xsort.c
 
-build sortperf.exe: link obj/sortperf.o obj/utils.o obj/bubble.o obj/cocktail.o obj/comb.o obj/cycle.o obj/flash.o obj/gnome.o obj/heap.o obj/insertion.o obj/intro.o obj/lsd_radix.o obj/merge.o obj/msd_radix.o obj/odd_even.o obj/quick.o obj/selection.o obj/shell.o obj/stooge.o obj/strand.o obj/weak_heap.o
-build test.exe: link obj/test.o obj/utils.o obj/bubble.o obj/cocktail.o obj/comb.o obj/cycle.o obj/flash.o obj/gnome.o obj/heap.o obj/insertion.o obj/intro.o obj/lsd_radix.o obj/merge.o obj/msd_radix.o obj/odd_even.o obj/quick.o obj/selection.o obj/shell.o obj/stooge.o obj/strand.o obj/weak_heap.o
-build xsort.exe: link obj/xsort.o obj/utils.o obj/bubble.o obj/cocktail.o obj/comb.o obj/cycle.o obj/flash.o obj/gnome.o obj/heap.o obj/insertion.o obj/intro.o obj/lsd_radix.o obj/merge.o obj/msd_radix.o obj/odd_even.o obj/quick.o obj/selection.o obj/shell.o obj/stooge.o obj/strand.o obj/weak_heap.o
-default sortperf.exe test.exe xsort.exe
+build sortperf: link obj/sortperf.o obj/utils.o obj/bubble.o obj/cocktail.o obj/comb.o obj/cycle.o obj/flash.o obj/gnome.o obj/heap.o obj/insertion.o obj/intro.o obj/lsd_radix.o obj/merge.o obj/msd_radix.o obj/odd_even.o obj/quick.o obj/selection.o obj/shell.o obj/stooge.o obj/strand.o obj/weak_heap.o
+build test: link obj/test.o obj/utils.o obj/bubble.o obj/cocktail.o obj/comb.o obj/cycle.o obj/flash.o obj/gnome.o obj/heap.o obj/insertion.o obj/intro.o obj/lsd_radix.o obj/merge.o obj/msd_radix.o obj/odd_even.o obj/quick.o obj/selection.o obj/shell.o obj/stooge.o obj/strand.o obj/weak_heap.o
+build xsort: link obj/xsort.o obj/utils.o obj/bubble.o obj/cocktail.o obj/comb.o obj/cycle.o obj/flash.o obj/gnome.o obj/heap.o obj/insertion.o obj/intro.o obj/lsd_radix.o obj/merge.o obj/msd_radix.o obj/odd_even.o obj/quick.o obj/selection.o obj/shell.o obj/stooge.o obj/strand.o obj/weak_heap.o
+default sortperf test xsort
 
-rule pwsh
-  command = powershell -c $in $out
+rule sh
+  command = bash $in $out
 
-build out.svg: pwsh scripts/benchmark.ps1 | scripts/plot.py sortperf.exe
+build out.svg: sh scripts/benchmark | scripts/plot.py sortperf

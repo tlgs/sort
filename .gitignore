@@ -4,4 +4,7 @@
 
 obj/
 *.o
-*.exe
+
+test
+xsort
+sortperf
