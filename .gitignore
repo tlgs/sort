@@ -1,8 +1,9 @@
-.vscode/
+.envrc
+.direnv/
 
 .ninja_log
 
-obj/
+build/
 *.o
 
 test

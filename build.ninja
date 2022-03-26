@@ -1,3 +1,5 @@
+builddir = build
+
 cflags = -Werror -Wall -Wextra -Wpedantic -Wshadow -O0
 
 rule cc
@@ -6,37 +8,53 @@ rule cc
 rule link
   command = gcc $cflags $in -o $out
 
-build obj/utils.o: cc sort/utils.c
-build obj/bubble.o: cc sort/bubble.c
-build obj/cocktail.o: cc sort/cocktail.c
-build obj/comb.o: cc sort/comb.c
-build obj/cycle.o: cc sort/cycle.c
-build obj/flash.o: cc sort/flash.c
-build obj/gnome.o: cc sort/gnome.c
-build obj/heap.o: cc sort/heap.c
-build obj/insertion.o: cc sort/insertion.c
-build obj/intro.o: cc sort/intro.c
-build obj/lsd_radix.o: cc sort/lsd_radix.c
-build obj/merge.o: cc sort/merge.c
-build obj/msd_radix.o: cc sort/msd_radix.c
-build obj/odd_even.o: cc sort/odd_even.c
-build obj/quick.o: cc sort/quick.c
-build obj/selection.o: cc sort/selection.c
-build obj/shell.o: cc sort/shell.c
-build obj/stooge.o: cc sort/stooge.c
-build obj/strand.o: cc sort/strand.c
-build obj/weak_heap.o: cc sort/weak_heap.c
+build $builddir/utils.o: cc sort/utils.c
+build $builddir/bubble.o: cc sort/bubble.c
+build $builddir/cocktail.o: cc sort/cocktail.c
+build $builddir/comb.o: cc sort/comb.c
+build $builddir/cycle.o: cc sort/cycle.c
+build $builddir/flash.o: cc sort/flash.c
+build $builddir/gnome.o: cc sort/gnome.c
+build $builddir/heap.o: cc sort/heap.c
+build $builddir/insertion.o: cc sort/insertion.c
+build $builddir/intro.o: cc sort/intro.c
+build $builddir/lsd_radix.o: cc sort/lsd_radix.c
+build $builddir/merge.o: cc sort/merge.c
+build $builddir/msd_radix.o: cc sort/msd_radix.c
+build $builddir/odd_even.o: cc sort/odd_even.c
+build $builddir/quick.o: cc sort/quick.c
+build $builddir/selection.o: cc sort/selection.c
+build $builddir/shell.o: cc sort/shell.c
+build $builddir/stooge.o: cc sort/stooge.c
+build $builddir/strand.o: cc sort/strand.c
+build $builddir/weak_heap.o: cc sort/weak_heap.c
 
-build obj/sortperf.o: cc sortperf.c
-build obj/test.o: cc test.c
-build obj/xsort.o: cc xsort.c
+build $builddir/sortperf.o: cc sortperf.c
+build $builddir/test.o: cc test.c
+build $builddir/xsort.o: cc xsort.c
 
-build sortperf: link obj/sortperf.o obj/utils.o obj/bubble.o obj/cocktail.o obj/comb.o obj/cycle.o obj/flash.o obj/gnome.o obj/heap.o obj/insertion.o obj/intro.o obj/lsd_radix.o obj/merge.o obj/msd_radix.o obj/odd_even.o obj/quick.o obj/selection.o obj/shell.o obj/stooge.o obj/strand.o obj/weak_heap.o
-build test: link obj/test.o obj/utils.o obj/bubble.o obj/cocktail.o obj/comb.o obj/cycle.o obj/flash.o obj/gnome.o obj/heap.o obj/insertion.o obj/intro.o obj/lsd_radix.o obj/merge.o obj/msd_radix.o obj/odd_even.o obj/quick.o obj/selection.o obj/shell.o obj/stooge.o obj/strand.o obj/weak_heap.o
-build xsort: link obj/xsort.o obj/utils.o obj/bubble.o obj/cocktail.o obj/comb.o obj/cycle.o obj/flash.o obj/gnome.o obj/heap.o obj/insertion.o obj/intro.o obj/lsd_radix.o obj/merge.o obj/msd_radix.o obj/odd_even.o obj/quick.o obj/selection.o obj/shell.o obj/stooge.o obj/strand.o obj/weak_heap.o
+build sortperf: link $builddir/sortperf.o $builddir/utils.o $builddir/bubble.o $
+    $builddir/cocktail.o $builddir/comb.o $builddir/cycle.o $builddir/flash.o $
+    $builddir/gnome.o $builddir/heap.o $builddir/insertion.o $builddir/intro.o $
+    $builddir/lsd_radix.o $builddir/merge.o $builddir/msd_radix.o $builddir/odd_even.o $
+    $builddir/quick.o $builddir/selection.o $builddir/shell.o $builddir/stooge.o $
+    $builddir/strand.o $builddir/weak_heap.o
+build test: link $builddir/test.o $builddir/utils.o $builddir/bubble.o $
+    $builddir/cocktail.o $builddir/comb.o $builddir/cycle.o $builddir/flash.o $
+    $builddir/gnome.o $builddir/heap.o $builddir/insertion.o $builddir/intro.o $
+    $builddir/lsd_radix.o $builddir/merge.o $builddir/msd_radix.o $builddir/odd_even.o $
+    $builddir/quick.o $builddir/selection.o $builddir/shell.o $builddir/stooge.o $
+    $builddir/strand.o $builddir/weak_heap.o
+build xsort: link $builddir/xsort.o $builddir/utils.o $builddir/bubble.o $
+    $builddir/cocktail.o $builddir/comb.o $builddir/cycle.o $builddir/flash.o $
+    $builddir/gnome.o $builddir/heap.o $builddir/insertion.o $builddir/intro.o $
+    $builddir/lsd_radix.o $builddir/merge.o $builddir/msd_radix.o $builddir/odd_even.o $
+    $builddir/quick.o $builddir/selection.o $builddir/shell.o $builddir/stooge.o $
+    $builddir/strand.o $builddir/weak_heap.o
+
 default sortperf test xsort
 
 rule sh
   command = bash $in $out
 
-build out.svg: sh scripts/benchmark | scripts/plot.py sortperf
+build assets/out.svg: sh scripts/benchmark | scripts/plot.py sortperf

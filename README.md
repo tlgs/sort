@@ -52,7 +52,7 @@ standard library's sorting algorithm.
 
 Visualisation limited to _efficient_ algorithms.
 
-![Sorting algorithms runtime comparison](out.svg)
+![Sorting algorithms runtime comparison](assets/out.svg)
 
 ```text
 Key:
