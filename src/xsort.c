@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "sort/sort.h"
+#include "sort.h"
 
 #define INIT_CAP 1024
 #define K 1.5

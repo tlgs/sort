@@ -1,3 +1,4 @@
+root = .
 builddir = build
 
 cflags = -Werror -Wall -Wextra -Wpedantic -Wshadow -O0
@@ -8,30 +9,30 @@ rule cc
 rule link
   command = gcc $cflags $in -o $out
 
-build $builddir/utils.o: cc sort/utils.c
-build $builddir/bubble.o: cc sort/bubble.c
-build $builddir/cocktail.o: cc sort/cocktail.c
-build $builddir/comb.o: cc sort/comb.c
-build $builddir/cycle.o: cc sort/cycle.c
-build $builddir/flash.o: cc sort/flash.c
-build $builddir/gnome.o: cc sort/gnome.c
-build $builddir/heap.o: cc sort/heap.c
-build $builddir/insertion.o: cc sort/insertion.c
-build $builddir/intro.o: cc sort/intro.c
-build $builddir/lsd_radix.o: cc sort/lsd_radix.c
-build $builddir/merge.o: cc sort/merge.c
-build $builddir/msd_radix.o: cc sort/msd_radix.c
-build $builddir/odd_even.o: cc sort/odd_even.c
-build $builddir/quick.o: cc sort/quick.c
-build $builddir/selection.o: cc sort/selection.c
-build $builddir/shell.o: cc sort/shell.c
-build $builddir/stooge.o: cc sort/stooge.c
-build $builddir/strand.o: cc sort/strand.c
-build $builddir/weak_heap.o: cc sort/weak_heap.c
+build $builddir/utils.o: cc $root/src/utils.c
+build $builddir/bubble.o: cc $root/src/bubble.c
+build $builddir/cocktail.o: cc $root/src/cocktail.c
+build $builddir/comb.o: cc $root/src/comb.c
+build $builddir/cycle.o: cc $root/src/cycle.c
+build $builddir/flash.o: cc $root/src/flash.c
+build $builddir/gnome.o: cc $root/src/gnome.c
+build $builddir/heap.o: cc $root/src/heap.c
+build $builddir/insertion.o: cc $root/src/insertion.c
+build $builddir/intro.o: cc $root/src/intro.c
+build $builddir/lsd_radix.o: cc $root/src/lsd_radix.c
+build $builddir/merge.o: cc $root/src/merge.c
+build $builddir/msd_radix.o: cc $root/src/msd_radix.c
+build $builddir/odd_even.o: cc $root/src/odd_even.c
+build $builddir/quick.o: cc $root/src/quick.c
+build $builddir/selection.o: cc $root/src/selection.c
+build $builddir/shell.o: cc $root/src/shell.c
+build $builddir/stooge.o: cc $root/src/stooge.c
+build $builddir/strand.o: cc $root/src/strand.c
+build $builddir/weak_heap.o: cc $root/src/weak_heap.c
 
-build $builddir/sortperf.o: cc sortperf.c
-build $builddir/test.o: cc test.c
-build $builddir/xsort.o: cc xsort.c
+build $builddir/sortperf.o: cc $root/src/sortperf.c
+build $builddir/test.o: cc $root/src/test.c
+build $builddir/xsort.o: cc $root/src/xsort.c
 
 build sortperf: link $builddir/sortperf.o $builddir/utils.o $builddir/bubble.o $
     $builddir/cocktail.o $builddir/comb.o $builddir/cycle.o $builddir/flash.o $

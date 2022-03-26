@@ -5,7 +5,7 @@
 #include <string.h>
 #include <time.h>
 
-#include "sort/sort.h"
+#include "sort.h"
 
 typedef void sort_func(size_t n, int32_t arr[n]);
 
@@ -99,7 +99,8 @@ int main(void) {
       }
       do_it(n, arr, algo[op].f);
 
-      // %sort (ascending, then randomly replace 1% of the elements w/ random values)
+      // %sort (ascending, then randomly replace 1% of the elements w/ random
+      // values)
       for (size_t j = 0; j < n / 100; j++) {
         size_t idx = spcg32(rng) % n;
         arr[idx] = spcg32(rng);

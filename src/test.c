@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "sort/sort.h"
+#include "sort.h"
 
 typedef void sort_func(size_t n, int32_t arr[n]);
 

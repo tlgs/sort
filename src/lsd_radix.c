@@ -6,7 +6,7 @@
 
 void lsd_radix_sort(size_t n, int32_t arr[n]) {
   uint32_t *x = (uint32_t *)arr;
-  
+
   for (size_t i = 0; i < n; i++) {
     x[i] ^= (1 << 31);
   }
