@@ -27,6 +27,8 @@ uint32_t spcg32(uint64_t s[1]) {
 }
 
 int main(void) {
+  setbuf(stdout, NULL); // disable buffering
+
   uint64_t rng[] = {0x9e8480dd162324e1};
   *rng ^= time(0);
 

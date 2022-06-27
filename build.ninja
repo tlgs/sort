@@ -55,7 +55,7 @@ build xsort: link $builddir/xsort.o $builddir/utils.o $builddir/bubble.o $
 
 default sortperf test xsort
 
-rule sh
-  command = bash $in $out
+rule python
+  command = python $in
 
-build assets/out.svg: sh scripts/benchmark | scripts/plot.py sortperf
+build misc/out.svg: python misc/sortperf_plot.py | sortperf
