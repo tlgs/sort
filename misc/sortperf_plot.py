@@ -8,12 +8,9 @@ Notes:
   > or if a read occurs when the output is directed to a terminal.
   > When the output is directed to a file or a pipe,
   > the actual output only occurs when the buffer is full.
-
-  
 """
-import io
-import subprocess
-import sys
+from io import StringIO
+from subprocess import Popen, PIPE, STDOUT
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -21,24 +18,17 @@ import pandas as pd
 import seaborn as sns
 
 if __name__ == "__main__":
-    buf = io.StringIO()
-    with subprocess.Popen(
-        ["./sortperf"],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        bufsize=1,
-        universal_newlines=True,
-    ) as proc:
+    buf = StringIO()
+    with Popen("./sortperf", stdout=PIPE, stderr=STDOUT, bufsize=1, text=True) as proc:
         for line in proc.stdout:
             print(line, end="")
             buf.write(line)
-
     datasets = buf.getvalue().split("\n\n")
 
     df = pd.DataFrame()
     for dataset in datasets[:-1]:
         algo, *table = dataset.split("\n")
-        tmp = pd.read_fwf(io.StringIO("\n".join(table)))
+        tmp = pd.read_fwf(StringIO("\n".join(table)))
         tmp["algorithm"] = algo
         df = pd.concat([df, tmp])
 
