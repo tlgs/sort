@@ -41,22 +41,22 @@ build $builddir/libsort.a: ar $builddir/utils.o $builddir/bubble.o $
     $builddir/quick.o $builddir/selection.o $builddir/shell.o $
     $builddir/stooge.o $builddir/strand.o $builddir/weak_heap.o
 
-# Performance benchmarking executable.
-build $builddir/sortperf.o: cc $root/src/sortperf.c
-build sortperf: link $builddir/sortperf.o | $builddir/libsort.a
-  libs = -lsort
-
-# Simple test executable.
-build $builddir/test.o: cc $root/src/test.c
-build test: link $builddir/test.o | $builddir/libsort.a
-  libs = -lsort
-
 # Main executable.
 build $builddir/xsort.o: cc $root/src/xsort.c
 build xsort: link $builddir/xsort.o | $builddir/libsort.a
   libs = -lsort
 
-default sortperf test xsort
+# Simple test executable.
+build $builddir/xsort_test.o: cc $root/src/xsort_test.c
+build xsort_test: link $builddir/xsort_test.o | $builddir/libsort.a
+  libs = -lsort
+
+# Performance benchmarking executable.
+build $builddir/sortperf.o: cc $root/src/sortperf.c
+build sortperf: link $builddir/sortperf.o | $builddir/libsort.a
+  libs = -lsort
+
+default sortperf xsort xsort_test
 
 rule python
   command = python $in

@@ -30,6 +30,8 @@ uint32_t spcg32(uint64_t s[1]) {
 }
 
 int main(void) {
+  setbuf(stdout, NULL); // disable buffering
+
   uint64_t rng[] = {0x9e8480dd162324e1};
   *rng ^= time(0);
 
@@ -63,6 +65,7 @@ int main(void) {
 
   bool any_failed = false;
   for (size_t i = 0; i < SORT_ALG_N; i++) {
+    printf("[%2zu/%d] %-9s ", i + 1, SORT_ALG_N, algo[i].name);
     bool failed = false;
     size_t runs = sizeof(arr_size) / sizeof(arr_size[0]);
     for (size_t j = 0; j < runs && !failed; j++) {
@@ -77,7 +80,7 @@ int main(void) {
     }
 
     char res[2][5] = {"PASS", "FAIL"};
-    printf("[%2zu/%d] %-9s %s\n", i + 1, SORT_ALG_N, algo[i].name, res[failed]);
+    printf("%s\n", res[failed]);
 
     any_failed = (any_failed || failed);
   }

@@ -6,6 +6,6 @@
 build/
 *.o
 
-test
 xsort
+xsort_test
 sortperf
