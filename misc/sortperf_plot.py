@@ -3,6 +3,8 @@
 Expects a `sortperf` executable in the current directory.
 Writes image to `misc/out.svg`.
 
+`pip install seaborn` should be enough to install this script's dependencies.
+
 Notes:
   > By default, printf buffers its output, but the output is flushed on newline
   > or if a read occurs when the output is directed to a terminal.
@@ -17,7 +19,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-if __name__ == "__main__":
+
+def main():
     buf = StringIO()
     with Popen("./sortperf", stdout=PIPE, stderr=STDOUT, bufsize=1, text=True) as proc:
         for line in proc.stdout:
@@ -66,3 +69,9 @@ if __name__ == "__main__":
         g.set_titles("{col_name}")
 
     g.savefig("misc/out.svg")
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
